@@ -1,7 +1,6 @@
 import re
 
-VERSION = ("1", "0", "0")
-__all__ = ["ChoiceItem", "ChoicesBase"]
+__all__ = ["ChoiceItem", "ChoicesBase", "C"]
 
 class ChoiceItem(object):
     """

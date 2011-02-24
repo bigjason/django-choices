@@ -15,7 +15,8 @@ setup(
     url="https://github.com/bigjason/django-choices",
     author="Jason Webb",
     author_email="bigjasonwebb@gmail.com",
-    py_modules=["djchoices", "test_djchoices"],
+    packages=find_packages(),
+    include_package_data=True,
     classifiers=[
        "Development Status :: 5 - Production/Stable",
        "Operating System :: OS Independent",
