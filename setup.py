@@ -10,7 +10,7 @@ setup(
     name="django-choices",
     version=".".join(map(str, VERSION)),
     license="MIT",
-    description="A data contracts system for python loosly modeled after django forms.",
+    description="Sanity for the django choices functionality.",
     long_description=readme,
     url="https://github.com/bigjason/django-choices",
     author="Jason Webb",
