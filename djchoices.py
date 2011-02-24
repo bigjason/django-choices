@@ -9,10 +9,18 @@ class ChoiceItem(object):
     normally be left blank.  Set a label if you need characters that are illegal
     in a python identifier name (ie: "DVD/Movie"). 
     """
-    def __init__(self, value, order=0, label=None):
+    order = 0
+    def __init__(self, value, label=None, order=None):
         self.value = value
-        self.order = order
+        if order:
+            self.order = order
+        else:
+            ChoiceItem.order += 1
+            self.order = ChoiceItem.order 
         self.label = label
+
+# Shorter convenience alias.
+C = ChoiceItem
         
 class DjangoChoicesMeta(type):
     """
@@ -52,7 +60,7 @@ class DjangoChoicesMeta(type):
 
         return super(DjangoChoicesMeta, cls).__new__(cls, name, bases, attrs)
 
-class ChoicesBase(object):
+class DjangoChoices(object):
     order = 0
     choices = ()
     __metaclass__ = DjangoChoicesMeta
