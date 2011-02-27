@@ -12,6 +12,14 @@ class StringTestClass(DjangoChoices):
     Two = ChoiceItem("T")
     Three = ChoiceItem("H")
 
+class SubClass1(NumericTestClass):
+    Item_4 = C(4)
+    Item_5 = C(5)
+
+class SubClass2(SubClass1):
+    Item_6 = C(6)
+    Item_7 = C(7)
+
 class DjangoChoices(unittest.TestCase):
     def setUp(self):
         pass
@@ -40,3 +48,17 @@ class DjangoChoices(unittest.TestCase):
         self.assertEqual(choices[0][0], "O")
         self.assertEqual(choices[1][0], "T")
         self.assertEqual(choices[2][0], "H")
+
+    def test_sub_class_level_1_choices(self):
+        choices = SubClass1.choices
+        self.assertEqual(choices[0][0], 1)
+        self.assertEqual(choices[3][0], 4)
+        self.assertEqual(choices[4][0], 5)
+        
+    def test_sub_class_level_2_choices(self):
+        choices = SubClass2.choices
+        self.assertEqual(choices[0][0], 1)
+        self.assertEqual(choices[3][0], 4)
+        self.assertEqual(choices[5][0], 6)
+        self.assertEqual(choices[6][0], 7)
+        

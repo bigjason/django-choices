@@ -1,3 +1,4 @@
+from collections import OrderedDict
 import re
 
 __all__ = ["ChoiceItem", "ChoicesBase", "C"]
@@ -34,17 +35,26 @@ class DjangoChoicesMeta(type):
                 self.value = value
             def __get__(self, obj, objtype):
                 return self.value
+            
+        fields = {}
+        
+        # Get all the fields from parent classes. 
+        parents = [b for b in bases if isinstance(b, DjangoChoicesMeta)]
+        for kls in parents:
+            for field_name in kls._fields:
+                fields[field_name] = kls._fields[field_name] 
 
-        sorted_names = []
-        for name in attrs:
-            if hasattr(attrs[name], "order"):
-                sorted_names.append(name)
-
-        sorted_names.sort(key=lambda b: attrs[b].order)
+        # Get all the fields from this class.
+        for field_name in attrs:
+            val = attrs[field_name]
+            if isinstance(val, ChoiceItem):
+                fields[field_name] = val 
+                
+        fields = OrderedDict(sorted(fields.items(), key=lambda x: x[1].order))
 
         choices = []
-        for name in sorted_names:
-            val = attrs[name]
+        for name in fields:
+            val = fields[name]
             if isinstance(val, ChoiceItem):
                 if val.label:
                     label = val.label
@@ -56,6 +66,7 @@ class DjangoChoicesMeta(type):
                 choices.append((name, val.choices))
 
         attrs["choices"] = StaticProp(tuple(choices))
+        attrs["_fields"] = fields
 
         return super(DjangoChoicesMeta, cls).__new__(cls, name, bases, attrs)
 
