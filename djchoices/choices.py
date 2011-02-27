@@ -1,5 +1,5 @@
-from collections import OrderedDict
 import re
+from collections import OrderedDict
 
 __all__ = ["ChoiceItem", "ChoicesBase", "C"]
 

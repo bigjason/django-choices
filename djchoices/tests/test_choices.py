@@ -55,10 +55,21 @@ class DjangoChoices(unittest.TestCase):
         self.assertEqual(choices[3][0], 4)
         self.assertEqual(choices[4][0], 5)
         
+    def test_sub_class_level_1_values(self):
+        self.assertEqual(SubClass1.Item_1, 1)
+        self.assertEqual(SubClass1.Item_4, 4)
+        self.assertEqual(SubClass1.Item_5, 5)
+                
     def test_sub_class_level_2_choices(self):
         choices = SubClass2.choices
         self.assertEqual(choices[0][0], 1)
         self.assertEqual(choices[3][0], 4)
         self.assertEqual(choices[5][0], 6)
         self.assertEqual(choices[6][0], 7)
+
+    def test_sub_class_level_2_values(self):
+        self.assertEqual(SubClass2.Item_1, 1)
+        self.assertEqual(SubClass2.Item_5, 5)
+        self.assertEqual(SubClass2.Item_6, 6)
+        self.assertEqual(SubClass2.Item_7, 7)
         
