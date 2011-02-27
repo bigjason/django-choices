@@ -16,15 +16,15 @@ Then you point the choices property to the ``choices`` attribute of the new clas
 Django will be able to use the choices and you will be able to access the values
 by name.  For example::
 
-     # In choices.py 
-     from djchoices import DjangoChoices, ChoiceItem
+    # In choices.py 
+    from djchoices import DjangoChoices, ChoiceItem
      
-     class PersonType(DjangoChoices):
-         Customer = ChoiceItem("C")
-         Employee = ChoiceItem("E")
-         Groundhog = ChoiceItem("G")
+    class PersonType(DjangoChoices):
+        Customer = ChoiceItem("C")
+        Employee = ChoiceItem("E")
+        Groundhog = ChoiceItem("G")
 
-	# In models.py
+    # In models.py
     class Person(models.Model):
         name = models.CharField(max_length=32)
         type = models.CharField(max_length=1, choices=choices.PersonType.choices)
