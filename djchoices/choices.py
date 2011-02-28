@@ -1,7 +1,7 @@
 import re
 from collections import OrderedDict
 
-__all__ = ["ChoiceItem", "ChoicesBase", "C"]
+__all__ = ["ChoiceItem", "DjangoChoices", "C"]
 
 class ChoiceItem(object):
     """
