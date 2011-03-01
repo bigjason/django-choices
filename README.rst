@@ -9,7 +9,7 @@ Django choices provides a declarative way of using the choices_ option on django
 fields.
 
 -----------
-Instalation
+Installation
 -----------
 You can install via PyPi_ or direct from the github_ repo.
 
