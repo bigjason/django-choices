@@ -31,6 +31,20 @@ class DjangoChoices(unittest.TestCase):
         self.assertEqual(NumericTestClass.Item_1, 1)
         self.assertEqual(NumericTestClass.Item_2, 2)
         self.assertEqual(NumericTestClass.Item_3, 3)
+
+    def test_class_labels(self):
+        self.assertEqual(NumericTestClass.labels.Item_1, "Item 1")
+        self.assertEqual(NumericTestClass.labels.Item_2, "Item 2")
+        self.assertEqual(NumericTestClass.labels.Item_3, "Item 3")
+    
+    def test_class_labels_inherited(self): 
+        self.assertEqual(SubClass2.labels.Item_2, "Item 2")
+        self.assertEqual(SubClass2.labels.Item_6, "Item 6")
+        
+    def test_class_values(self):
+        self.assertEqual(SubClass1.values[SubClass1.Item_1], "Item 1")
+        self.assertEqual(SubClass1.values[SubClass1.Item_4], "Item 4")
+        self.assertEqual(SubClass1.values[SubClass1.Item_5], "Item 5")
         
     def test_numeric_class_order(self):
         choices = NumericTestClass.choices
