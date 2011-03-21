@@ -33,11 +33,11 @@ can replace this::
     class Person(models.Model):
     	# Choices
     	PERSON_TYPE = (
-	        ("C", "Customer"),
-	        ("E", "Employee"),
-	        ("G", "Groundhog"),
-	    )
-	    # Fields
+            ("C", "Customer"),
+            ("E", "Employee"),
+            ("G", "Groundhog"),
+        )
+        # Fields
         name = models.CharField(max_length=32)
         type = models.CharField(max_length=1, choices=PERSON_TYPE)
 
@@ -47,16 +47,16 @@ With this::
     class Person(models.Model):
     	# Choices
 	    class PersonType(DjangoChoices):
-	        Customer = ChoiceItem("C")
-	        Employee = ChoiceItem("E")
-	        Groundhog = ChoiceItem("G")
-	    # Fields
+            Customer = ChoiceItem("C")
+            Employee = ChoiceItem("E")
+            Groundhog = ChoiceItem("G")
+        # Fields
         name = models.CharField(max_length=32)
         type = models.CharField(max_length=1, choices=PersonType.choices)
 
 You can use this elsewhere like this::
     
-    # In other code
+    # Other code
     Person.create(name="Phil", type=PersonType.Groundhog)
     
 The `DjangoChoices` classes can be located anywhere you want.  If I have a lot of
