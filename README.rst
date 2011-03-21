@@ -46,7 +46,7 @@ With this::
     # In models.py
     class Person(models.Model):
     	# Choices
-	    class PersonType(DjangoChoices):
+        class PersonType(DjangoChoices):
             Customer = ChoiceItem("C")
             Employee = ChoiceItem("E")
             Groundhog = ChoiceItem("G")
