@@ -86,4 +86,7 @@ class DjangoChoices(unittest.TestCase):
         self.assertEqual(SubClass2.Item_5, 5)
         self.assertEqual(SubClass2.Item_6, 6)
         self.assertEqual(SubClass2.Item_7, 7)
-        
+
+    def test_sub_class_name(self):
+        self.assertEqual(NumericTestClass.__name__, "NumericTestClass")
+        self.assertEqual(SubClass2.__name__, "SubClass2")
