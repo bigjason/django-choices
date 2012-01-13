@@ -67,19 +67,19 @@ class DjangoChoicesMeta(type):
                 
         fields = OrderedDict(sorted(fields.items(), key=lambda x: x[1].order))
         
-        for name in fields:
-            val = fields[name]
+        for field_name in fields:
+            val = fields[field_name]
             if isinstance(val, ChoiceItem):
                 if val.label:
                     label = val.label
                 else:
-                    label = cls.name_clean.sub(" ", name)
+                    label = cls.name_clean.sub(" ", field_name)
                 choices.append((val.value, label))
-                attrs[name] = StaticProp(val.value)
-                setattr(labels, name, label)
+                attrs[field_name] = StaticProp(val.value)
+                setattr(labels, field_name, label)
                 values[val.value] = label 
             else:
-                choices.append((name, val.choices))
+                choices.append((field_name, val.choices))
 
         attrs["choices"] = StaticProp(tuple(choices))
         attrs["labels"] = labels
