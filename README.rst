@@ -25,8 +25,8 @@ To install with easy_install::
 Basic Usage
 -----------
 To start you create a choices class. Then you point the choices property on your
-fields to the ``choices`` attribute of the new class. Django will be able to use 
-the choices and you will be able to access the values by name.  For example you 
+fields to the ``choices`` attribute of the new class. Django will be able to use
+the choices and you will be able to access the values by name.  For example you
 can replace this::
 
     # In models.py
@@ -55,14 +55,14 @@ With this::
         type = models.CharField(max_length=1, choices=PersonType.choices)
 
 You can use this elsewhere like this::
-    
+
     # Other code
-    Person.create(name="Phil", type=PersonType.Groundhog)
-    
+    Person.create(name="Phil", type=Person.PersonType.Groundhog)
+
 The `DjangoChoices` classes can be located anywhere you want.  If I have a lot of
-declarations I will sometimes place them in a `const.py` or `choices.py`. 
-       
-------- 
+declarations I will sometimes place them in a `const.py` or `choices.py`.
+
+-------
 License
 -------
 Licensed under the `MIT License`_.
