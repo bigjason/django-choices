@@ -1,5 +1,5 @@
 import re
-from collections import OrderedDict
+from django.utils.datastructures import SortedDict as OrderedDict
 
 __all__ = ["ChoiceItem", "DjangoChoices", "C"]
 
