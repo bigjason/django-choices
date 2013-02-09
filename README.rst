@@ -6,7 +6,7 @@ Order and sanity for django model choices.
 *Documentation is a work in progress.*
 
 Django choices provides a declarative way of using the choices_ option on django_
-fields.  More information on its development can be found at its `Home Page`_.
+fields.
 
 ------------
 Installation
@@ -77,4 +77,3 @@ The source code can be found on github_.
 .. _django: http://www.djangoproject.com/
 .. _github: https://github.com/bigjason/django-choices
 .. _PyPi: http://pypi.python.org/pypi/django-choices/
-.. _Home Page: http://www.bigjason.com/projects/django-choices/
