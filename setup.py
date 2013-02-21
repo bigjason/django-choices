@@ -10,6 +10,7 @@ setup(
     license="MIT",
     description="Sanity for the django choices functionality.",
     long_description=readme,
+    install_requires=['Django>=1.3'],
     url="https://github.com/bigjason/django-choices",
     author="Jason Webb",
     author_email="bigjasonwebb@gmail.com",
