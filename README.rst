@@ -1,6 +1,10 @@
 ============================
 Django-Choices
 ============================
+
+.. image:: https://secure.travis-ci.org/bigjason/django-choices.png?branch=master
+    :target: http://travis-ci.org/bigjason/django-choices
+
 Order and sanity for django model choices.
 ------------------------------------------------------
 *Documentation is a work in progress.*
