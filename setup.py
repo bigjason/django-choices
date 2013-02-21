@@ -1,14 +1,12 @@
 from os import path
 from setuptools import setup, find_packages
 
-from djchoices import VERSION
-
 with open(path.join(path.dirname(__file__), 'README.rst')) as f:
     readme = f.read()
 
 setup(
     name="django-choices",
-    version=".".join(map(str, VERSION)),
+    version="1.1.10",
     license="MIT",
     description="Sanity for the django choices functionality.",
     long_description=readme,
