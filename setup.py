@@ -1,6 +1,13 @@
 from os import path
 from setuptools import setup, find_packages
 
+try:
+    from django.utils import six
+except ImportError:
+    REQUIRE_SIX = True
+else:
+    REQUIRE_SIX = False
+
 with open(path.join(path.dirname(__file__), 'README.rst')) as f:
     readme = f.read()
 
@@ -10,7 +17,7 @@ setup(
     license="MIT",
     description="Sanity for the django choices functionality.",
     long_description=readme,
-    install_requires=['Django>=1.3'],
+    install_requires=['Django>=1.3'] + (['six'] if REQUIRE_SIX else []),
     url="https://github.com/bigjason/django-choices",
     author="Jason Webb",
     author_email="bigjasonwebb@gmail.com",
