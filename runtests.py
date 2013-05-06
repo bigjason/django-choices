@@ -15,10 +15,7 @@ if __name__ == "__main__":
     suite.addTest(loader.discover(disc_folder, pattern="test*.py"))
     stdout.write("Done.\n")
 
+    stdout.write("Running tests...\n")
     runner = unittest.TextTestRunner()
     runner.verbosity = 2
-
-    print "Running tests..."
-    print
-
     runner.run(suite.run)

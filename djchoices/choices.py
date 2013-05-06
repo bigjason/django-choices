@@ -1,5 +1,9 @@
 import re
 from django.utils.datastructures import SortedDict as OrderedDict
+try:
+    from django.utils import six
+except ImportError:
+    import six
 
 __all__ = ["ChoiceItem", "DjangoChoices", "C"]
 
@@ -88,9 +92,8 @@ class DjangoChoicesMeta(type):
 
         return super(DjangoChoicesMeta, cls).__new__(cls, name, bases, attrs)
 
-class DjangoChoices(object):
+class DjangoChoices(six.with_metaclass(DjangoChoicesMeta)):
     order = 0
     choices = ()
     labels = Labels()
     values = {}
-    __metaclass__ = DjangoChoicesMeta
