@@ -49,6 +49,7 @@ With this::
 
     # In models.py
     from djchoices import DjangoChoices, ChoiceItem
+    
     class Person(models.Model):
     	# Choices
         class PersonType(DjangoChoices):
