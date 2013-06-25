@@ -11,6 +11,7 @@ class NumericTestClass(DjangoChoices):
     Item_3 = C(3)
     
 class StringTestClass(DjangoChoices):
+    empty = C("", "")
     One = ChoiceItem("O")
     Two = ChoiceItem("T")
     Three = ChoiceItem("H")
@@ -36,6 +37,7 @@ class DjangoChoices(unittest.TestCase):
         self.assertEqual(NumericTestClass.Item_3, 3)
 
     def test_class_labels(self):
+        self.assertEqual(StringTestClass.labels.empty, "")
         self.assertEqual(NumericTestClass.labels.Item_1, "Item 1")
         self.assertEqual(NumericTestClass.labels.Item_2, "Item 2")
         self.assertEqual(NumericTestClass.labels.Item_3, "Item 3")
@@ -62,9 +64,10 @@ class DjangoChoices(unittest.TestCase):
         
     def test_string_class_order(self):
         choices = StringTestClass.choices
-        self.assertEqual(choices[0][0], "O")
-        self.assertEqual(choices[1][0], "T")
-        self.assertEqual(choices[2][0], "H")
+        self.assertEqual(choices[0][0], "")
+        self.assertEqual(choices[1][0], "O")
+        self.assertEqual(choices[2][0], "T")
+        self.assertEqual(choices[3][0], "H")
 
     def test_sub_class_level_1_choices(self):
         choices = SubClass1.choices
