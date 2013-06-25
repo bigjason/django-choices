@@ -12,7 +12,7 @@ __all__ = ["ChoiceItem", "DjangoChoices", "C"]
 class Labels(dict):
     def __getattribute__(self, name):
         result = dict.get(self, name, None)
-        if result:
+        if result is not None:
             return result
         else:
             raise AttributeError("Label for field %s was not found." % name)
@@ -74,7 +74,7 @@ class DjangoChoicesMeta(type):
         for field_name in fields:
             val = fields[field_name]
             if isinstance(val, ChoiceItem):
-                if val.label:
+                if not val.label is None:
                     label = val.label
                 else:
                     label = cls.name_clean.sub(" ", field_name)
