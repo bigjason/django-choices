@@ -24,6 +24,11 @@ class SubClass2(SubClass1):
     Item_6 = C(6)
     Item_7 = C(7)
 
+class PluralLabelTestClass(DjangoChoices):
+    apple = ChoiceItem("a", label="Apple", label_plural="Apples")
+    box = ChoiceItem("b", label="Box", label_plural="Boxes")
+
+
 class DjangoChoices(unittest.TestCase):
     def setUp(self):
         pass
@@ -41,6 +46,18 @@ class DjangoChoices(unittest.TestCase):
         self.assertEqual(NumericTestClass.labels.Item_1, "Item 1")
         self.assertEqual(NumericTestClass.labels.Item_2, "Item 2")
         self.assertEqual(NumericTestClass.labels.Item_3, "Item 3")
+
+    def test_class_default_plural_labels(self):
+        self.assertEqual(StringTestClass.labels_plural.empty, "")
+        self.assertEqual(NumericTestClass.labels_plural.Item_1, "Item 1")
+        self.assertEqual(NumericTestClass.labels_plural.Item_2, "Item 2")
+        self.assertEqual(NumericTestClass.labels_plural.Item_3, "Item 3")
+
+    def test_class_plural_labels(self):
+        self.assertEqual(PluralLabelTestClass.labels.apple, "Apple")
+        self.assertEqual(PluralLabelTestClass.labels_plural.apple, "Apples")
+        self.assertEqual(PluralLabelTestClass.labels.box, "Box")
+        self.assertEqual(PluralLabelTestClass.labels_plural.box, "Boxes")
 
     def test_class_labels_inherited(self):
         self.assertEqual(SubClass2.labels.Item_2, "Item 2")
