@@ -96,3 +96,43 @@ class DjangoChoices(unittest.TestCase):
     def test_sub_class_name(self):
         self.assertEqual(NumericTestClass.__name__, "NumericTestClass")
         self.assertEqual(SubClass2.__name__, "SubClass2")
+
+    def test_numeric_class_validator(self):
+        from django.core.exceptions import ValidationError
+
+        self.assertEqual(None, NumericTestClass.validator(1))
+        self.assertEqual(None, NumericTestClass.validator(2))
+        self.assertEqual(None, NumericTestClass.validator(3))
+
+        self.assertRaises(ValidationError, NumericTestClass.validator, 0)
+        self.assertRaises(ValidationError, NumericTestClass.validator, 4)
+        self.assertRaises(ValidationError, NumericTestClass.validator, 5)
+        self.assertRaises(ValidationError, NumericTestClass.validator, 6)
+        self.assertRaises(ValidationError, NumericTestClass.validator, 7)
+
+    def test_subclass1_validator(self):
+        from django.core.exceptions import ValidationError
+
+        self.assertEqual(None, SubClass1.validator(1))
+        self.assertEqual(None, SubClass1.validator(2))
+        self.assertEqual(None, SubClass1.validator(3))
+        self.assertEqual(None, SubClass1.validator(4))
+        self.assertEqual(None, SubClass1.validator(5))
+
+        self.assertRaises(ValidationError, SubClass1.validator, 0)
+        self.assertRaises(ValidationError, SubClass1.validator, 6)
+        self.assertRaises(ValidationError, SubClass1.validator, 7)
+
+    def test_subclass_2_validator(self):
+        from django.core.exceptions import ValidationError
+
+        self.assertEqual(None, SubClass2.validator(1))
+        self.assertEqual(None, SubClass2.validator(2))
+        self.assertEqual(None, SubClass2.validator(3))
+        self.assertEqual(None, SubClass2.validator(4))
+        self.assertEqual(None, SubClass2.validator(5))
+        self.assertEqual(None, SubClass2.validator(6))
+        self.assertEqual(None, SubClass2.validator(7))
+
+        self.assertRaises(ValidationError, SubClass2.validator, 0)
+        self.assertRaises(ValidationError, SubClass2.validator, 8)

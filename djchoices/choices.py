@@ -1,5 +1,7 @@
 import re
 from django.utils.datastructures import SortedDict as OrderedDict
+from django.core.exceptions import ValidationError
+
 try:
     from django.utils import six
 except ImportError:
@@ -97,3 +99,10 @@ class DjangoChoices(six.with_metaclass(DjangoChoicesMeta)):
     choices = ()
     labels = Labels()
     values = {}
+
+    @classmethod
+    def validator(cls, value):
+        if value not in cls.values:
+            raise ValidationError('Select a valid choice. %(value)s is not '
+                                  'one of the available choices.')
+
