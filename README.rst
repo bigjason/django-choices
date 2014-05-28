@@ -49,7 +49,7 @@ With this::
 
     # In models.py
     from djchoices import DjangoChoices, ChoiceItem
-    
+
     class Person(models.Model):
     	# Choices
         class PersonType(DjangoChoices):
@@ -58,7 +58,9 @@ With this::
             Groundhog = ChoiceItem("G")
         # Fields
         name = models.CharField(max_length=32)
-        type = models.CharField(max_length=1, choices=PersonType.choices)
+        type = models.CharField(max_length=1,
+                                choices=PersonType.choices,
+                                validators=[PersonType.validator])
 
 You can use this elsewhere like this::
 
