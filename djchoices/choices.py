@@ -30,7 +30,8 @@ class ChoiceItem(object):
     in a python identifier name (ie: "DVD/Movie"). 
     """
     order = 0
-    def __init__(self, value, label=None, order=None):
+
+    def __init__(self, value, label=None, order=None, label_plural=None):
         self.value = value
         if order:
             self.order = order
@@ -38,6 +39,7 @@ class ChoiceItem(object):
             ChoiceItem.order += 1
             self.order = ChoiceItem.order 
         self.label = label
+        self.label_plural = label_plural
 
 # Shorter convenience alias.
 C = ChoiceItem
@@ -47,6 +49,7 @@ class DjangoChoicesMeta(type):
     Metaclass that writes the choices class.
     """
     name_clean = re.compile(r"_+")
+
     def __new__(cls, name, bases, attrs):
         class StaticProp(object):
             def __init__(self, value):
@@ -56,6 +59,7 @@ class DjangoChoicesMeta(type):
                 
         fields = {}
         labels = Labels()
+        labels_plural = Labels()
         values = {}
         choices = []
         
@@ -84,11 +88,18 @@ class DjangoChoicesMeta(type):
                 attrs[field_name] = StaticProp(val.value)
                 setattr(labels, field_name, label)
                 values[val.value] = label 
+
+                if not val.label_plural is None:
+                    label_plural = val.label_plural
+                else:
+                    label_plural = label
+                setattr(labels_plural, field_name, label_plural)
             else:
                 choices.append((field_name, val.choices))
 
         attrs["choices"] = StaticProp(tuple(choices))
         attrs["labels"] = labels
+        attrs["labels_plural"] = labels_plural
         attrs["values"] = values
         attrs["_fields"] = fields
 
@@ -98,6 +109,7 @@ class DjangoChoices(six.with_metaclass(DjangoChoicesMeta)):
     order = 0
     choices = ()
     labels = Labels()
+    labels_plural = Labels()
     values = {}
 
     @classmethod
