@@ -67,6 +67,14 @@ You can use this elsewhere like this::
     # Other code
     Person.create(name="Phil", type=Person.PersonType.Groundhog)
 
+You can use without value, and the label will be used as value::
+
+    class Sample(DjangoChoices):
+        OptionA = ChoiceItem()
+        OptionB = ChoiceItem()
+
+    print(Sample.OptionA) # "OptionA"
+
 The `DjangoChoices` classes can be located anywhere you want.  If I have a lot of
 declarations I will sometimes place them in a `const.py` or `choices.py`.
 
