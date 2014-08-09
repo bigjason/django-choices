@@ -24,6 +24,12 @@ class SubClass2(SubClass1):
     Item_6 = C(6)
     Item_7 = C(7)
 
+class EmptyValueClass(DjangoChoices):
+    Option1 = ChoiceItem()
+    Option2 = ChoiceItem()
+    Option3 = ChoiceItem()
+
+
 class DjangoChoices(unittest.TestCase):
     def setUp(self):
         pass
@@ -136,3 +142,9 @@ class DjangoChoices(unittest.TestCase):
 
         self.assertRaises(ValidationError, SubClass2.validator, 0)
         self.assertRaises(ValidationError, SubClass2.validator, 8)
+
+    def test_empty_value_class(self):
+        choices = EmptyValueClass.choices
+        self.assertEqual(choices[0][0], "Option1")
+        self.assertEqual(choices[1][0], "Option2")
+        self.assertEqual(choices[2][0], "Option3")
