@@ -6,6 +6,7 @@ except ImportError:
 from djchoices import DjangoChoices, C, ChoiceItem
 
 class NumericTestClass(DjangoChoices):
+    Item_0 = C(0)
     Item_1 = C(1)
     Item_2 = C(2)
     Item_3 = C(3)
@@ -38,6 +39,7 @@ class DjangoChoices(unittest.TestCase):
         pass
 
     def test_numeric_class_values(self):
+        self.assertEqual(NumericTestClass.Item_0, 0)
         self.assertEqual(NumericTestClass.Item_1, 1)
         self.assertEqual(NumericTestClass.Item_2, 2)
         self.assertEqual(NumericTestClass.Item_3, 3)
@@ -59,9 +61,10 @@ class DjangoChoices(unittest.TestCase):
 
     def test_numeric_class_order(self):
         choices = NumericTestClass.choices
-        self.assertEqual(choices[0][0], 1)
-        self.assertEqual(choices[1][0], 2)
-        self.assertEqual(choices[2][0], 3)
+        self.assertEqual(choices[0][0], 0)
+        self.assertEqual(choices[1][0], 1)
+        self.assertEqual(choices[2][0], 2)
+        self.assertEqual(choices[3][0], 3)
 
     def test_string_class_values(self):
         self.assertEqual(StringTestClass.One, "O")
@@ -77,9 +80,9 @@ class DjangoChoices(unittest.TestCase):
 
     def test_sub_class_level_1_choices(self):
         choices = SubClass1.choices
-        self.assertEqual(choices[0][0], 1)
-        self.assertEqual(choices[3][0], 4)
-        self.assertEqual(choices[4][0], 5)
+        self.assertEqual(choices[0][0], 0)
+        self.assertEqual(choices[4][0], 4)
+        self.assertEqual(choices[5][0], 5)
 
     def test_sub_class_level_1_values(self):
         self.assertEqual(SubClass1.Item_1, 1)
@@ -88,10 +91,10 @@ class DjangoChoices(unittest.TestCase):
 
     def test_sub_class_level_2_choices(self):
         choices = SubClass2.choices
-        self.assertEqual(choices[0][0], 1)
-        self.assertEqual(choices[3][0], 4)
-        self.assertEqual(choices[5][0], 6)
-        self.assertEqual(choices[6][0], 7)
+        self.assertEqual(choices[0][0], 0)
+        self.assertEqual(choices[4][0], 4)
+        self.assertEqual(choices[6][0], 6)
+        self.assertEqual(choices[7][0], 7)
 
     def test_sub_class_level_2_values(self):
         self.assertEqual(SubClass2.Item_1, 1)
