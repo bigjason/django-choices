@@ -80,8 +80,10 @@ class DjangoChoicesMeta(type):
                     label = val.label
                 else:
                     label = cls.name_clean.sub(" ", field_name)
-                choices.append((val.value or label, label))
-                attrs[field_name] = StaticProp(val.value or label)
+                
+                val0 = label if val.value is None else val.value
+                choices.append((val0, label))
+                attrs[field_name] = StaticProp(val0)
                 setattr(labels, field_name, label)
                 values[val.value or label] = label
             else:
