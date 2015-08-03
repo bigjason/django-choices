@@ -1,6 +1,10 @@
 import re
-from django.utils.datastructures import SortedDict as OrderedDict
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ValidationError]
+
+try:
+    from collections import OrderedDict
+except ImportError:  # Py2.6, fall back to Django's implementation
+    from django.utils.datastructures import SortedDict as OrderedDict
 
 try:
     from django.utils import six
