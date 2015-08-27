@@ -1,5 +1,5 @@
 import re
-from django.core.exceptions import ValidationError]
+from django.core.exceptions import ValidationError
 
 try:
     from collections import OrderedDict
