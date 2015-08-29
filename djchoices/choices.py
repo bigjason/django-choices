@@ -1,6 +1,7 @@
 import re
 
 from django.core.exceptions import ValidationError
+from django.utils.deconstruct import deconstructible
 
 try:
     from collections import OrderedDict
@@ -123,6 +124,7 @@ class DjangoChoices(six.with_metaclass(DjangoChoicesMeta)):
     values = {}
 
     @classmethod
+    @deconstructible
     def validator(cls, value):
         if value not in cls.values:
             raise ValidationError('Select a valid choice. %(value)s is not '
