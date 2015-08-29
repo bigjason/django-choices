@@ -113,8 +113,27 @@ class DjangoChoicesMeta(type):
         attrs["labels"] = labels
         attrs["values"] = values
         attrs["_fields"] = fields
+        attrs["validator"] = ChoicesValidator(values)
 
         return super(DjangoChoicesMeta, cls).__new__(cls, name, bases, attrs)
+
+
+@deconstructible
+class ChoicesValidator(object):
+
+    def __init__(self, values):
+        self.values = values
+
+    def __call__(self, value):
+        if value not in self.values:
+            raise ValidationError('Select a valid choice. %(value)s is not '
+                                  'one of the available choices.')
+
+    def __eq__(self, other):
+        return isinstance(other, ChoicesValidator) and self.values == other.values
+
+    def __ne__(self, other):
+        return not (self == other)
 
 
 class DjangoChoices(six.with_metaclass(DjangoChoicesMeta)):
@@ -122,10 +141,4 @@ class DjangoChoices(six.with_metaclass(DjangoChoicesMeta)):
     choices = ()
     labels = Labels()
     values = {}
-
-    @classmethod
-    @deconstructible
-    def validator(cls, value):
-        if value not in cls.values:
-            raise ValidationError('Select a valid choice. %(value)s is not '
-                                  'one of the available choices.')
+    validator = None

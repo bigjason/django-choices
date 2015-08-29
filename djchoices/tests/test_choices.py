@@ -4,6 +4,7 @@ except ImportError:
     import unittest
 
 from djchoices import DjangoChoices, C, ChoiceItem
+from .utils import has_new_migrations
 
 
 class NumericTestClass(DjangoChoices):
@@ -153,3 +154,10 @@ class DjangoChoices(unittest.TestCase):
         self.assertEqual(choices[0][0], "Option1")
         self.assertEqual(choices[1][0], "Option2")
         self.assertEqual(choices[2][0], "Option3")
+
+    @unittest.skipUnless(*has_new_migrations())
+    def test_deconstructible_validator(self):
+        deconstructed = NumericTestClass.validator.deconstruct()
+        self.assertEqual(deconstructed, (
+            'djchoices.choices.ChoicesValidator', (NumericTestClass.values,), {}
+        ))
