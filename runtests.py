@@ -1,10 +1,11 @@
 try:
-  import unittest2 as unittest
+    import unittest2 as unittest
 except ImportError:
-  import unittest
+    import unittest
 
 from os import path
 from sys import stdout
+
 
 if __name__ == "__main__":
     disc_folder = path.abspath(path.dirname(__file__))

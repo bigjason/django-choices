@@ -1,9 +1,10 @@
 try:
-  import unittest2 as unittest
+    import unittest2 as unittest
 except ImportError:
-  import unittest
+    import unittest
 
 from djchoices import DjangoChoices, C, ChoiceItem
+
 
 class NumericTestClass(DjangoChoices):
     Item_0 = C(0)
@@ -11,19 +12,23 @@ class NumericTestClass(DjangoChoices):
     Item_2 = C(2)
     Item_3 = C(3)
 
+
 class StringTestClass(DjangoChoices):
     empty = ChoiceItem("", "")
     One = ChoiceItem("O")
     Two = ChoiceItem("T")
     Three = ChoiceItem("H")
 
+
 class SubClass1(NumericTestClass):
     Item_4 = C(4)
     Item_5 = C(5)
 
+
 class SubClass2(SubClass1):
     Item_6 = C(6)
     Item_7 = C(7)
+
 
 class EmptyValueClass(DjangoChoices):
     Option1 = ChoiceItem()
