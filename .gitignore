@@ -1,6 +1,10 @@
 dist/
 *egg-info
+.eggs/
 *.pyc
 .project
 .pydevproject
 
+# coverage
+htmlcov
+.coverage
