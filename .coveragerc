@@ -1,0 +1,8 @@
+[run]
+branch = True
+source = djchoices
+
+[report]
+omit = */tests/*
+exclude_lines =
+    pragma: no cover

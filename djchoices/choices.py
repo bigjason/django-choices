@@ -31,7 +31,7 @@ class ChoiceItem(object):
     """
     Describes a choice item.  The label is usually the field name so label can
     normally be left blank.  Set a label if you need characters that are illegal
-    in a python identifier name (ie: "DVD/Movie"). 
+    in a python identifier name (ie: "DVD/Movie").
     """
     order = 0
     def __init__(self, value=None, label=None, order=None):
@@ -40,12 +40,12 @@ class ChoiceItem(object):
             self.order = order
         else:
             ChoiceItem.order += 1
-            self.order = ChoiceItem.order 
+            self.order = ChoiceItem.order
         self.label = label
 
 # Shorter convenience alias.
 C = ChoiceItem
-        
+
 class DjangoChoicesMeta(type):
     """
     Metaclass that writes the choices class.
@@ -57,26 +57,26 @@ class DjangoChoicesMeta(type):
                 self.value = value
             def __get__(self, obj, objtype):
                 return self.value
-                
+
         fields = {}
         labels = Labels()
         values = {}
         choices = []
-        
-        # Get all the fields from parent classes. 
+
+        # Get all the fields from parent classes.
         parents = [b for b in bases if isinstance(b, DjangoChoicesMeta)]
         for kls in parents:
             for field_name in kls._fields:
-                fields[field_name] = kls._fields[field_name] 
+                fields[field_name] = kls._fields[field_name]
 
         # Get all the fields from this class.
         for field_name in attrs:
             val = attrs[field_name]
             if isinstance(val, ChoiceItem):
-                fields[field_name] = val 
-                
+                fields[field_name] = val
+
         fields = OrderedDict(sorted(fields.items(), key=lambda x: x[1].order))
-        
+
         for field_name in fields:
             val = fields[field_name]
             if isinstance(val, ChoiceItem):
@@ -84,12 +84,12 @@ class DjangoChoicesMeta(type):
                     label = val.label
                 else:
                     label = cls.name_clean.sub(" ", field_name)
-                
+
                 val0 = label if val.value is None else val.value
                 choices.append((val0, label))
                 attrs[field_name] = StaticProp(val0)
                 setattr(labels, field_name, label)
-                values[val.value or label] = label
+                values[val0] = label
             else:
                 choices.append((field_name, val.choices))
 

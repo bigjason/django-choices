@@ -8,12 +8,14 @@ except ImportError:
 else:
     REQUIRE_SIX = False
 
+from djchoices import __version__
+
 with open(path.join(path.dirname(__file__), 'README.rst')) as f:
     readme = f.read()
 
 setup(
     name="django-choices",
-    version="1.3",
+    version=__version__,
     license="MIT",
     description="Sanity for the django choices functionality.",
     long_description=readme,
@@ -31,7 +33,8 @@ setup(
        "Framework :: Django",
        "Programming Language :: Python :: 2.6",
        "Programming Language :: Python :: 2.7",
-       "Programming Language :: Python :: 3.3"
-       "Programming Language :: Python :: 3.4"
+       "Programming Language :: Python :: 3.3",
+       "Programming Language :: Python :: 3.4",
+       "Programming Language :: Python :: Implementation :: PyPy",
     ]
 )

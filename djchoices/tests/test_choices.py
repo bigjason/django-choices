@@ -113,7 +113,6 @@ class DjangoChoices(unittest.TestCase):
         self.assertEqual(None, NumericTestClass.validator(2))
         self.assertEqual(None, NumericTestClass.validator(3))
 
-        self.assertRaises(ValidationError, NumericTestClass.validator, 0)
         self.assertRaises(ValidationError, NumericTestClass.validator, 4)
         self.assertRaises(ValidationError, NumericTestClass.validator, 5)
         self.assertRaises(ValidationError, NumericTestClass.validator, 6)
@@ -128,7 +127,6 @@ class DjangoChoices(unittest.TestCase):
         self.assertEqual(None, SubClass1.validator(4))
         self.assertEqual(None, SubClass1.validator(5))
 
-        self.assertRaises(ValidationError, SubClass1.validator, 0)
         self.assertRaises(ValidationError, SubClass1.validator, 6)
         self.assertRaises(ValidationError, SubClass1.validator, 7)
 
@@ -143,7 +141,6 @@ class DjangoChoices(unittest.TestCase):
         self.assertEqual(None, SubClass2.validator(6))
         self.assertEqual(None, SubClass2.validator(7))
 
-        self.assertRaises(ValidationError, SubClass2.validator, 0)
         self.assertRaises(ValidationError, SubClass2.validator, 8)
 
     def test_empty_value_class(self):
