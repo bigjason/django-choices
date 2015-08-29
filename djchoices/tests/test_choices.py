@@ -4,6 +4,7 @@ except ImportError:
     import unittest
 
 from djchoices import DjangoChoices, C, ChoiceItem
+
 from .utils import has_new_migrations
 
 

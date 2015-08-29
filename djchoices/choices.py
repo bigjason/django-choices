@@ -1,17 +1,8 @@
 import re
 
 from django.core.exceptions import ValidationError
-from django.utils.deconstruct import deconstructible
 
-try:
-    from collections import OrderedDict
-except ImportError:  # Py2.6, fall back to Django's implementation
-    from django.utils.datastructures import SortedDict as OrderedDict
-
-try:
-    from django.utils import six
-except ImportError:
-    import six
+from .compat import deconstructible, OrderedDict, six
 
 
 __all__ = ["ChoiceItem", "DjangoChoices", "C"]
