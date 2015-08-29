@@ -59,6 +59,7 @@ With this::
             Customer = ChoiceItem("C")
             Employee = ChoiceItem("E")
             Groundhog = ChoiceItem("G")
+
         # Fields
         name = models.CharField(max_length=32)
         type = models.CharField(max_length=1,

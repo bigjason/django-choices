@@ -1,19 +1,14 @@
 import re
+
 from django.core.exceptions import ValidationError
 
-try:
-    from collections import OrderedDict
-except ImportError:  # Py2.6, fall back to Django's implementation
-    from django.utils.datastructures import SortedDict as OrderedDict
+from .compat import deconstructible, OrderedDict, six
 
-try:
-    from django.utils import six
-except ImportError:
-    import six
 
 __all__ = ["ChoiceItem", "DjangoChoices", "C"]
 
-### Support Functionality (Not part of public API ###
+
+# Support Functionality (Not part of public API)
 
 class Labels(dict):
     def __getattribute__(self, name):
@@ -22,42 +17,53 @@ class Labels(dict):
             return result
         else:
             raise AttributeError("Label for field %s was not found." % name)
+
     def __setattr__(self, name, value):
         self[name] = value
 
-### End Support Functionality ###
+
+class StaticProp(object):
+
+    def __init__(self, value):
+        self.value = value
+
+    def __get__(self, obj, objtype):
+        return self.value
+
+# End Support Functionality
+
 
 class ChoiceItem(object):
     """
-    Describes a choice item.  The label is usually the field name so label can
-    normally be left blank.  Set a label if you need characters that are illegal
-    in a python identifier name (ie: "DVD/Movie").
+    Describes a choice item.
+
+    The label is usually the field name so label can normally be left blank.
+    Set a label if you need characters that are illegal in a python identifier
+    name (ie: "DVD/Movie").
     """
     order = 0
+
     def __init__(self, value=None, label=None, order=None):
         self.value = value
+        self.label = label
+
         if order:
             self.order = order
         else:
             ChoiceItem.order += 1
             self.order = ChoiceItem.order
-        self.label = label
 
 # Shorter convenience alias.
 C = ChoiceItem
+
 
 class DjangoChoicesMeta(type):
     """
     Metaclass that writes the choices class.
     """
     name_clean = re.compile(r"_+")
-    def __new__(cls, name, bases, attrs):
-        class StaticProp(object):
-            def __init__(self, value):
-                self.value = value
-            def __get__(self, obj, objtype):
-                return self.value
 
+    def __new__(cls, name, bases, attrs):
         fields = {}
         labels = Labels()
         values = {}
@@ -80,9 +86,10 @@ class DjangoChoicesMeta(type):
         for field_name in fields:
             val = fields[field_name]
             if isinstance(val, ChoiceItem):
-                if not val.label is None:
+                if val.label is not None:
                     label = val.label
                 else:
+                    # TODO: mark translatable by default?
                     label = cls.name_clean.sub(" ", field_name)
 
                 val0 = label if val.value is None else val.value
@@ -97,18 +104,32 @@ class DjangoChoicesMeta(type):
         attrs["labels"] = labels
         attrs["values"] = values
         attrs["_fields"] = fields
+        attrs["validator"] = ChoicesValidator(values)
 
         return super(DjangoChoicesMeta, cls).__new__(cls, name, bases, attrs)
+
+
+@deconstructible
+class ChoicesValidator(object):
+
+    def __init__(self, values):
+        self.values = values
+
+    def __call__(self, value):
+        if value not in self.values:
+            raise ValidationError('Select a valid choice. %(value)s is not '
+                                  'one of the available choices.')
+
+    def __eq__(self, other):
+        return isinstance(other, ChoicesValidator) and self.values == other.values
+
+    def __ne__(self, other):
+        return not (self == other)
+
 
 class DjangoChoices(six.with_metaclass(DjangoChoicesMeta)):
     order = 0
     choices = ()
     labels = Labels()
     values = {}
-
-    @classmethod
-    def validator(cls, value):
-        if value not in cls.values:
-            raise ValidationError('Select a valid choice. %(value)s is not '
-                                  'one of the available choices.')
-
+    validator = None
