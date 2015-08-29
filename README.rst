@@ -5,6 +5,9 @@ Django-Choices
 .. image:: https://secure.travis-ci.org/bigjason/django-choices.png?branch=master
     :target: http://travis-ci.org/bigjason/django-choices
 
+.. image:: https://coveralls.io/repos/bigjason/django-choices/badge.svg?branch=master&service=github
+    :target: https://coveralls.io/github/bigjason/django-choices?branch=master
+
 Order and sanity for django model choices.
 ------------------------------------------------------
 *Documentation is a work in progress.*
