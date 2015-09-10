@@ -8,9 +8,12 @@ Django-Choices
 .. image:: https://coveralls.io/repos/bigjason/django-choices/badge.svg?branch=master&service=github
     :target: https://coveralls.io/github/bigjason/django-choices?branch=master
 
+.. image:: https://readthedocs.org/projects/django-choices/badge/?version=latest
+    :target: http://django-choices.readthedocs.org/en/latest/
+    :alt: Documentation Status
+
 Order and sanity for django model choices.
 ------------------------------------------------------
-*Documentation is a work in progress.*
 
 Django choices provides a declarative way of using the choices_ option on django_
 fields.
