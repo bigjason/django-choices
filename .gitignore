@@ -4,6 +4,7 @@ dist/
 *.pyc
 .project
 .pydevproject
+.tox
 
 # coverage
 htmlcov
