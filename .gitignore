@@ -9,3 +9,6 @@ dist/
 # coverage
 htmlcov
 .coverage
+
+# docs
+docs/_build
