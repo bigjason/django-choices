@@ -20,6 +20,7 @@ setup(
     description="Sanity for the django choices functionality.",
     long_description=readme,
     install_requires=['Django>=1.3'] + (['six'] if REQUIRE_SIX else []),
+    test_suite='runtests.get_suite',
     url="https://github.com/bigjason/django-choices",
     author="Jason Webb",
     author_email="bigjasonwebb@gmail.com",

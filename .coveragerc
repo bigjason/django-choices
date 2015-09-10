@@ -6,3 +6,6 @@ source = djchoices
 omit = */tests/*
 exclude_lines =
     pragma: no cover
+
+[html]
+directory = cover
