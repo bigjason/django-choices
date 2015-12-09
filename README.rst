@@ -95,7 +95,7 @@ Souce Code
 ----------
 The source code can be found on github_.
 
-.. _choices: http://docs.djangoproject.com/en/1.2/ref/models/fields/#choices
+.. _choices: http://docs.djangoproject.com/en/1.8/ref/models/fields/#choices
 .. _MIT License: http://en.wikipedia.org/wiki/MIT_License
 .. _django: http://www.djangoproject.com/
 .. _github: https://github.com/bigjason/django-choices
