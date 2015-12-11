@@ -16,6 +16,9 @@ Django-Choices
 .. image:: https://coveralls.io/repos/bigjason/django-choices/badge.svg
     :target: https://coveralls.io/github/bigjason/django-choices?branch=master
 
+.. image:: https://img.shields.io/pypi/v/django-choices.svg
+  :target: https://pypi.python.org/pypi/django-choices
+
 
 Contents:
 

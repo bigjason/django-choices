@@ -12,6 +12,9 @@ Django-Choices
     :target: http://django-choices.readthedocs.org/en/latest/
     :alt: Documentation Status
 
+.. image:: https://img.shields.io/pypi/v/django-choices.svg
+  :target: https://pypi.python.org/pypi/django-choices
+
 Order and sanity for django model choices.
 ------------------------------------------------------
 
