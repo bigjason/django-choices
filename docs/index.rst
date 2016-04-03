@@ -40,8 +40,8 @@ Requirements
 
 Django choices is fairly simple, so most Python and Django
 versions should work. Django choices is tested against Python
-2.6, 2.7, 3.3, 3.4 and PyPy. Django 1.3 until 1.8 (including)
-are officially supported.
+2.6, 2.7, 3.3, 3.4, 3.5 and PyPy. Django 1.3 until 1.9 (including)
+are officially supported (= tested in Travis).
 
 
 Quick-start
