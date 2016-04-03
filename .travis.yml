@@ -36,9 +36,6 @@ env:
   - TOXENV=py34-django19
   - TOXENV=py34-djangolatest
 
-  - TOXENV=py35-django15
-  - TOXENV=py35-django16
-  - TOXENV=py35-django17
   - TOXENV=py35-django18
   - TOXENV=py35-django19
   - TOXENV=py35-djangolatest
