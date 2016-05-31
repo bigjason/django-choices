@@ -117,8 +117,8 @@ class ChoicesValidator(object):
 
     def __call__(self, value):
         if value not in self.values:
-            raise ValidationError('Select a valid choice. %(value)s is not '
-                                  'one of the available choices.')
+            raise ValidationError('Select a valid choice. %s is not '
+                                  'one of the available choices.' % value)
 
     def __eq__(self, other):
         return isinstance(other, ChoicesValidator) and self.values == other.values
