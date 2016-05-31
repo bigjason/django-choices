@@ -125,6 +125,16 @@ class DjangoChoices(unittest.TestCase):
         self.assertRaises(ValidationError, NumericTestClass.validator, 6)
         self.assertRaises(ValidationError, NumericTestClass.validator, 7)
 
+    def test_validation_error_message(self):
+        from django.core.exceptions import ValidationError
+
+        message = ("Select a valid choice. 4 is not "
+                   "one of the available choices.")
+
+        with self.assertRaises(ValidationError) as context:
+            NumericTestClass.validator(4)
+        self.assertEqual(context.exception.message, message)
+
     def test_subclass1_validator(self):
         from django.core.exceptions import ValidationError
 
