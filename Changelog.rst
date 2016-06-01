@@ -2,6 +2,11 @@
 Changelog
 =========
 
+1.4.3
+-----
+
+Fixed a bug in the validator error message output - thanks to Sobolev Nikita
+
 1.4 to 1.4.1
 ------------
 This is a small release that fixes some ugliness. In Django 1.7 and up, the
