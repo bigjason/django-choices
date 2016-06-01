@@ -21,6 +21,7 @@ env:
   - TOXENV=py27-django17
   - TOXENV=py27-django18
   - TOXENV=py27-django19
+  - TOXENV=py27-django110
   - TOXENV=py27-djangolatest
 
   - TOXENV=py33-django15
@@ -34,10 +35,12 @@ env:
   - TOXENV=py34-django17
   - TOXENV=py34-django18
   - TOXENV=py34-django19
+  - TOXENV=py34-django110
   - TOXENV=py34-djangolatest
 
   - TOXENV=py35-django18
   - TOXENV=py35-django19
+  - TOXENV=py35-django110
   - TOXENV=py35-djangolatest
 
   - TOXENV=pypy-django15
@@ -45,4 +48,5 @@ env:
   - TOXENV=pypy-django17
   - TOXENV=pypy-django18
   - TOXENV=pypy-django19
+  - TOXENV=pypy-django110
   - TOXENV=pypy-djangolatest
