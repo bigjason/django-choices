@@ -11,7 +11,8 @@ __all__ = ["ChoiceItem", "DjangoChoices", "C"]
 # Support Functionality (Not part of public API)
 
 class Labels(dict):
-    def __getattribute__(self, name):
+
+    def __getattr__(self, name):
         result = dict.get(self, name, None)
         if result is not None:
             return result
