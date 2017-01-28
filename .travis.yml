@@ -50,3 +50,5 @@ env:
   - TOXENV=pypy-django19
   - TOXENV=pypy-django110
   - TOXENV=pypy-djangolatest
+
+  - TOXENV=docs
