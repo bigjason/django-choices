@@ -169,12 +169,13 @@ Returns a dictionary with a mapping from value to label:
 validator
 +++++++++
 
+.. note::
+
+    At least since Django 1.3, there is model and form-level validation of the
+    choices. Unless you have a reason to explicitly specify/override the validator,
+    you can skip specifying this validator.
+
+
 Returns a validator that can be used in your model field. This validator checks
 that the value passed to the field is indeed a value specified in your choices
 class.
-
-
-.. note::
-
-    This validator had issues in Django 1.7 and up with the new migrations.
-    validators have to be deconstructible. This was fixed in the 1.4 release.
