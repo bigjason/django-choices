@@ -33,6 +33,8 @@ class StaticProp(object):
 
 # End Support Functionality
 
+sentinel = object()
+
 
 class ChoiceItem(object):
     """
@@ -44,7 +46,7 @@ class ChoiceItem(object):
     """
     order = 0
 
-    def __init__(self, value=None, label=None, order=None):
+    def __init__(self, value=sentinel, label=None, order=None):
         self.value = value
         self.label = label
 
@@ -93,7 +95,7 @@ class DjangoChoicesMeta(type):
                     # TODO: mark translatable by default?
                     label = cls.name_clean.sub(" ", field_name)
 
-                val0 = label if val.value is None else val.value
+                val0 = label if val.value is sentinel else val.value
                 choices.append((val0, label))
                 attrs[field_name] = StaticProp(val0)
                 setattr(labels, field_name, label)
