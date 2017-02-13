@@ -1,7 +1,7 @@
 Choice items
 ============
 
-The `ChoiceItem` class is what drives the choices. Each instance
+The ``ChoiceItem`` class is what drives the choices. Each instance
 corresponds to a possible choice for your field.
 
 
@@ -113,8 +113,8 @@ value as well, and it will be determined from the label.
     )
 
 
-`DjangoChoices` class attributes
---------------------------------
+``DjangoChoices`` class attributes
+----------------------------------
 
 The choices class itself has a few useful attributes. Most notably `choices`,
 which returns the choices as a tuple.

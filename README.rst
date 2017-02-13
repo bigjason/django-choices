@@ -9,7 +9,7 @@ Django-Choices
     :target: https://coveralls.io/github/bigjason/django-choices?branch=master
 
 .. image:: https://readthedocs.org/projects/django-choices/badge/?version=latest
-    :target: http://django-choices.readthedocs.org/en/latest/
+    :target: http://django-choices.readthedocs.io/en/latest/
     :alt: Documentation Status
 
 .. image:: https://img.shields.io/pypi/v/django-choices.svg
@@ -19,7 +19,7 @@ Order and sanity for django model choices.
 ------------------------------------------------------
 
 Django choices provides a declarative way of using the choices_ option on django_
-fields.
+fields. Read the full `Documentation`_ on ReadTheDocs.
 
 ------------
 Installation
@@ -62,31 +62,26 @@ With this::
     class Person(models.Model):
     	# Choices
         class PersonType(DjangoChoices):
-            Customer = ChoiceItem("C")
-            Employee = ChoiceItem("E")
-            Groundhog = ChoiceItem("G")
+            customer = ChoiceItem("C")
+            employee = ChoiceItem("E")
+            groundhog = ChoiceItem("G")
 
         # Fields
         name = models.CharField(max_length=32)
-        type = models.CharField(max_length=1,
-                                choices=PersonType.choices,
-                                validators=[PersonType.validator])
+        type = models.CharField(max_length=1, choices=PersonType.choices)
 
 You can use this elsewhere like this::
 
     # Other code
-    Person.create(name="Phil", type=Person.PersonType.Groundhog)
+    Person.create(name="Phil", type=Person.PersonType.groundhog)
 
-You can use without value, and the label will be used as value::
+You can use them without value, and the label will be used as value::
 
     class Sample(DjangoChoices):
-        OptionA = ChoiceItem()
-        OptionB = ChoiceItem()
+        option_a = ChoiceItem()
+        option_b = ChoiceItem()
 
-    print(Sample.OptionA) # "OptionA"
-
-The `DjangoChoices` classes can be located anywhere you want.  If I have a lot of
-declarations I will sometimes place them in a `const.py` or `choices.py`.
+    print(Sample.option_a)  # "option_a"
 
 -------
 License
@@ -103,3 +98,4 @@ The source code can be found on github_.
 .. _django: http://www.djangoproject.com/
 .. _github: https://github.com/bigjason/django-choices
 .. _PyPi: http://pypi.python.org/pypi/django-choices/
+.. _docs: http://django-choices.readthedocs.io/en/latest/

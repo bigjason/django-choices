@@ -1,8 +1,11 @@
+from __future__ import absolute_import, unicode_literals
+
 import re
+from collections import OrderedDict
 
 from django.core.exceptions import ValidationError
-
-from .compat import deconstructible, OrderedDict, six
+from django.utils import six
+from django.utils.deconstruct import deconstructible
 
 
 __all__ = ["ChoiceItem", "DjangoChoices", "C"]
@@ -55,7 +58,7 @@ class ChoiceItem(object):
             self.order = ChoiceItem.order
 
 # Shorter convenience alias.
-C = ChoiceItem
+C = ChoiceItem  # noqa
 
 
 class DjangoChoicesMeta(type):

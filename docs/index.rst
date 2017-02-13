@@ -39,9 +39,11 @@ Requirements
 ------------
 
 Django choices is fairly simple, so most Python and Django
-versions should work. Django choices is tested against Python
-2.6, 2.7, 3.3, 3.4, 3.5 and PyPy. Django 1.3 until 1.9 (including)
-are officially supported (= tested in Travis).
+versions should work. It is tested against Python 2.7, 3.3, 3.4, 3.5 and PyPy.
+Django 1.8 until and including 1.11 alpha are supported (and tested in Travis).
+
+If you need to support older Python or Django versions, you should stick with
+version ``1.4.4``. Backwards compatibility is dropped from 1.5 onwards.
 
 
 Quick-start

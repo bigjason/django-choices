@@ -9,31 +9,14 @@ after_success:
   - coveralls
 
 env:
-  - TOXENV=py26-django13
-  - TOXENV=py26-django14
-  - TOXENV=py26-django15
-  - TOXENV=py26-django16
-
-  - TOXENV=py27-django13
-  - TOXENV=py27-django14
-  - TOXENV=py27-django15
-  - TOXENV=py27-django16
-  - TOXENV=py27-django17
   - TOXENV=py27-django18
   - TOXENV=py27-django19
   - TOXENV=py27-django110
   - TOXENV=py27-django111
   - TOXENV=py27-djangolatest
 
-  - TOXENV=py33-django15
-  - TOXENV=py33-django16
-  - TOXENV=py33-django17
   - TOXENV=py33-django18
-  - TOXENV=py33-djangolatest
 
-  - TOXENV=py34-django15
-  - TOXENV=py34-django16
-  - TOXENV=py34-django17
   - TOXENV=py34-django18
   - TOXENV=py34-django19
   - TOXENV=py34-django110
@@ -46,9 +29,6 @@ env:
   - TOXENV=py35-django111
   - TOXENV=py35-djangolatest
 
-  - TOXENV=pypy-django15
-  - TOXENV=pypy-django16
-  - TOXENV=pypy-django17
   - TOXENV=pypy-django18
   - TOXENV=pypy-django19
   - TOXENV=pypy-django110
