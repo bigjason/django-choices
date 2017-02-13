@@ -39,9 +39,11 @@ Requirements
 ------------
 
 Django choices is fairly simple, so most Python and Django
-versions should work. Django choices is tested against Python
-2.6, 2.7, 3.3, 3.4, 3.5 and PyPy. Django 1.3 until 1.9 (including)
-are officially supported (= tested in Travis).
+versions should work. It is tested against Python 2.7, 3.3, 3.4, 3.5 and PyPy.
+Django 1.8 until and including 1.11 alpha are supported (and tested in Travis).
+
+If you need to support older Python or Django versions, you should stick with
+version ``1.4.4``. Backwards compatibility is dropped from 1.5 onwards.
 
 
 Quick-start
@@ -60,12 +62,12 @@ To use it, you write a choices class, and use it in your model fields:
 
 .. code-block:: python
 
-    from djchoices import DjangoChoices, ChoiceItem
+    from djchoices import ChoiceItem, DjangoChoices
 
 
     class Book(models.Model):
 
-        class BookTypes(DjangoChoices):
+        class BookType(DjangoChoices):
             short_story = ChoiceItem('short', 'Short story')
             novel = ChoiceItem('novel', 'Novel')
             non_fiction = ChoiceItem('non_fiction', 'Non fiction')
@@ -73,26 +75,26 @@ To use it, you write a choices class, and use it in your model fields:
 
         author = models.ForeignKey('Author')
         book_type = models.CharField(
-            max_length=20, choices=BookTypes.choices,
-            default=BookTypes.novel, validators=[BookTypes.validator]
+            max_length=20, choices=BookType.choices,
+            default=BookType.novel
         )
 
 
-You can use this in other places like this:
+You can then use the availe choices in other modules, e.g.:
 
 
 .. code-block:: python
 
     from .models import Book
 
-
     Person.objects.create(author=my_author, type=Book.BookTypes.short_story)
 
 
-The `DjangoChoices` classes can be located anywhere you want,
+The ``DjangoChoices`` classes can be located anywhere you want,
 for example you can put them outside of the model declaration if you have a
 'common' set of choices for different models. Any place is valid though,
-you can group them all together in `choices.py` if you want.
+you can group them all together in ``choices.py`` if you want.
+
 
 License
 -------

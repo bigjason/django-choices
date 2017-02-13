@@ -2,6 +2,22 @@
 Changelog
 =========
 
+1.5.0
+-----
+
+* Dropped support for old Python/Django versions.
+* Added support for ``NullBooleanField`` -- thanks to @ashwch
+* Added retention of choices order in ``DjangoChoices.values``
+
+..  warning::
+    Dropped support for Python versions < 2.7 and 3.3, and Django < 1.8. If you
+    need explicit support for these versions, you should stick to version 1.4.4.
+
+1.4.4
+-----
+
+* Bugfix for better IPython support (125d523e1c94e4edb344e3bb3ea1eab6f7d073ed)
+
 1.4.3
 -----
 

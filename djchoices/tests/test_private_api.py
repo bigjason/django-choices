@@ -1,9 +1,6 @@
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
+import unittest
 
-from djchoices import DjangoChoices, C, ChoiceItem
+from djchoices import DjangoChoices, C, ChoiceItem  # noqa
 
 
 class PrivateAPITests(unittest.TestCase):
@@ -23,4 +20,3 @@ class PrivateAPITests(unittest.TestCase):
 
         keys = Choices.labels.keys()
         self.assertEqual(set(keys), set(['a', 'b']))
-

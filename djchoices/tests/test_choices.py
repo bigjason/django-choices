@@ -1,11 +1,6 @@
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
+import unittest
 
 from djchoices import DjangoChoices, C, ChoiceItem
-
-from .utils import has_new_migrations
 
 
 class NumericTestClass(DjangoChoices):
@@ -36,6 +31,7 @@ class EmptyValueClass(DjangoChoices):
     Option1 = ChoiceItem()
     Option2 = ChoiceItem()
     Option3 = ChoiceItem()
+
 
 class NullBooleanValueClass(DjangoChoices):
     Option1 = ChoiceItem(None, "Pending")
@@ -70,6 +66,9 @@ class DjangoChoices(unittest.TestCase):
         self.assertEqual(SubClass1.values[SubClass1.Item_1], "Item 1")
         self.assertEqual(SubClass1.values[SubClass1.Item_4], "Item 4")
         self.assertEqual(SubClass1.values[SubClass1.Item_5], "Item 5")
+
+    def test_class_values_order(self):
+        self.assertEqual(list(StringTestClass.values), ["", "O", "T", "H"])
 
     def test_numeric_class_order(self):
         choices = NumericTestClass.choices
@@ -136,7 +135,7 @@ class DjangoChoices(unittest.TestCase):
         message = ("Select a valid choice. 4 is not "
                    "one of the available choices.")
 
-        self.assertRaisesRegexp(ValidationError, message, 
+        self.assertRaisesRegexp(ValidationError, message,
                                 NumericTestClass.validator, 4)
 
     def test_subclass1_validator(self):
@@ -179,7 +178,6 @@ class DjangoChoices(unittest.TestCase):
         self.assertEqual(choices[1][1], "Successful")
         self.assertEqual(choices[2][1], "Failed")
 
-    @unittest.skipUnless(*has_new_migrations())
     def test_deconstructible_validator(self):
         deconstructed = NumericTestClass.validator.deconstruct()
         self.assertEqual(deconstructed, (
