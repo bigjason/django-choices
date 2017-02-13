@@ -19,7 +19,7 @@ Order and sanity for django model choices.
 ------------------------------------------------------
 
 Django choices provides a declarative way of using the choices_ option on django_
-fields. Read the full `Documentation`_ on ReadTheDocs.
+fields. Read the full `documentation`_ on ReadTheDocs.
 
 ------------
 Installation
@@ -98,4 +98,4 @@ The source code can be found on github_.
 .. _django: http://www.djangoproject.com/
 .. _github: https://github.com/bigjason/django-choices
 .. _PyPi: http://pypi.python.org/pypi/django-choices/
-.. _docs: http://django-choices.readthedocs.io/en/latest/
+.. _documentation: http://django-choices.readthedocs.io/en/latest/

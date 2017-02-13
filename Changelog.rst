@@ -7,6 +7,7 @@ Changelog
 
 * Dropped support for old Python/Django versions.
 * Added support for ``NullBooleanField`` -- thanks to @ashwch
+* Added retention of choices order in ``DjangoChoices.values``
 
 ..  warning::
     Dropped support for Python versions < 2.7 and 3.3, and Django < 1.8. If you
