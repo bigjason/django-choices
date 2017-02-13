@@ -67,6 +67,9 @@ class DjangoChoices(unittest.TestCase):
         self.assertEqual(SubClass1.values[SubClass1.Item_4], "Item 4")
         self.assertEqual(SubClass1.values[SubClass1.Item_5], "Item 5")
 
+    def test_class_values_order(self):
+        self.assertEqual(list(StringTestClass.values), ["", "O", "T", "H"])
+
     def test_numeric_class_order(self):
         choices = NumericTestClass.choices
         self.assertEqual(choices[0][0], 0)
