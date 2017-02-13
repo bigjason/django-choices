@@ -33,6 +33,12 @@ class EmptyValueClass(DjangoChoices):
     Option3 = ChoiceItem()
 
 
+class NullBooleanValueClass(DjangoChoices):
+    Option1 = ChoiceItem(None, "Pending")
+    Option2 = ChoiceItem(True, "Successful")
+    Option3 = ChoiceItem(False, "Failed")
+
+
 class DjangoChoices(unittest.TestCase):
     def setUp(self):
         pass
@@ -159,6 +165,15 @@ class DjangoChoices(unittest.TestCase):
         self.assertEqual(choices[0][0], "Option1")
         self.assertEqual(choices[1][0], "Option2")
         self.assertEqual(choices[2][0], "Option3")
+
+    def test_null_boolean_value_class(self):
+        choices = NullBooleanValueClass.choices
+        self.assertEqual(choices[0][0], None)
+        self.assertEqual(choices[1][0], True)
+        self.assertEqual(choices[2][0], False)
+        self.assertEqual(choices[0][1], "Pending")
+        self.assertEqual(choices[1][1], "Successful")
+        self.assertEqual(choices[2][1], "Failed")
 
     def test_deconstructible_validator(self):
         deconstructed = NumericTestClass.validator.deconstruct()

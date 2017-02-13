@@ -2,7 +2,7 @@
 Django-Choices
 ============================
 
-.. image:: https://secure.travis-ci.org/bigjason/django-choices.png?branch=master
+.. image:: https://secure.travis-ci.org/bigjason/django-choices.svg?branch=master
     :target: http://travis-ci.org/bigjason/django-choices
 
 .. image:: https://coveralls.io/repos/bigjason/django-choices/badge.svg?branch=master&service=github
