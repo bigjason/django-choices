@@ -72,7 +72,7 @@ class DjangoChoicesMeta(type):
     def __new__(cls, name, bases, attrs):
         fields = {}
         labels = Labels()
-        values = {}
+        values = OrderedDict()
         choices = []
 
         # Get all the fields from parent classes.
