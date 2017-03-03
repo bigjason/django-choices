@@ -39,6 +39,11 @@ class NullBooleanValueClass(DjangoChoices):
     Option3 = ChoiceItem(False, "Failed")
 
 
+class DuplicateValuesClass(DjangoChoices):
+    Option1 = ChoiceItem('a')
+    Option2 = ChoiceItem('a')
+
+
 class DjangoChoices(unittest.TestCase):
     def setUp(self):
         pass
@@ -183,3 +188,14 @@ class DjangoChoices(unittest.TestCase):
         self.assertEqual(deconstructed, (
             'djchoices.choices.ChoicesValidator', (NumericTestClass.values,), {}
         ))
+
+    def test_attribute_from_value(self):
+        attributes = NumericTestClass.attributes
+        self.assertEqual(attributes[0], 'Item_0')
+        self.assertEqual(attributes[1], 'Item_1')
+        self.assertEqual(attributes[2], 'Item_2')
+        self.assertEqual(attributes[3], 'Item_3')
+
+    def test_attribute_from_value_duplicates(self):
+        with self.assertRaises(ValueError):
+            DuplicateValuesClass.attributes
