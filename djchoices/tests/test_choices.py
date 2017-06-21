@@ -44,6 +44,11 @@ class DuplicateValuesClass(DjangoChoices):
     Option2 = ChoiceItem('a')
 
 
+class OrderedChoices(DjangoChoices):
+    Option1 = ChoiceItem('a', order=1)
+    Option2 = ChoiceItem('b', order=0)
+
+
 class DjangoChoices(unittest.TestCase):
     def setUp(self):
         pass
@@ -199,3 +204,8 @@ class DjangoChoices(unittest.TestCase):
     def test_attribute_from_value_duplicates(self):
         with self.assertRaises(ValueError):
             DuplicateValuesClass.attributes
+
+    def test_choice_item_order(self):
+        choices = OrderedChoices.choices
+        self.assertEqual(choices[0][0], 'b')
+        self.assertEqual(choices[1][0], 'a')
