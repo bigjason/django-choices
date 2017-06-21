@@ -7,7 +7,7 @@ with open(path.join(path.dirname(__file__), 'README.rst')) as f:
 
 setup(
     name="django-choices",
-    version='1.5.0',
+    version='1.5.1',
     license="MIT",
     description="Sanity for the django choices functionality.",
     long_description=readme,
