@@ -179,3 +179,18 @@ validator
 Returns a validator that can be used in your model field. This validator checks
 that the value passed to the field is indeed a value specified in your choices
 class.
+
+attributes
+++++++++++
+
+Returns an ``OrderedDict`` with the mapping from choice value -> attribute
+on the choices class.
+
+.. code-block:: python
+
+    >>> class MyChoices(DjangoChoices):
+    ...     first_choice = ChoiceItem(1, 'label 1')
+    ...     second_choice = ChoiceItem(2, 'label 2')
+
+    >>> MyChoices.attributes
+    OrderedDict([(1, 'first_choice'), (2, 'second_choice')])

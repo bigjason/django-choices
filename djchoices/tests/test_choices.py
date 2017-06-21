@@ -1,6 +1,6 @@
 import unittest
 
-from djchoices import DjangoChoices, C, ChoiceItem
+from djchoices import C, ChoiceItem, DjangoChoices
 
 
 class NumericTestClass(DjangoChoices):
@@ -37,6 +37,16 @@ class NullBooleanValueClass(DjangoChoices):
     Option1 = ChoiceItem(None, "Pending")
     Option2 = ChoiceItem(True, "Successful")
     Option3 = ChoiceItem(False, "Failed")
+
+
+class DuplicateValuesClass(DjangoChoices):
+    Option1 = ChoiceItem('a')
+    Option2 = ChoiceItem('a')
+
+
+class OrderedChoices(DjangoChoices):
+    Option1 = ChoiceItem('a', order=1)
+    Option2 = ChoiceItem('b', order=0)
 
 
 class DjangoChoices(unittest.TestCase):
@@ -183,3 +193,19 @@ class DjangoChoices(unittest.TestCase):
         self.assertEqual(deconstructed, (
             'djchoices.choices.ChoicesValidator', (NumericTestClass.values,), {}
         ))
+
+    def test_attribute_from_value(self):
+        attributes = NumericTestClass.attributes
+        self.assertEqual(attributes[0], 'Item_0')
+        self.assertEqual(attributes[1], 'Item_1')
+        self.assertEqual(attributes[2], 'Item_2')
+        self.assertEqual(attributes[3], 'Item_3')
+
+    def test_attribute_from_value_duplicates(self):
+        with self.assertRaises(ValueError):
+            DuplicateValuesClass.attributes
+
+    def test_choice_item_order(self):
+        choices = OrderedChoices.choices
+        self.assertEqual(choices[0][0], 'b')
+        self.assertEqual(choices[1][0], 'a')

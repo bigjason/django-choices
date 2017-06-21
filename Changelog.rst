@@ -2,6 +2,11 @@
 Changelog
 =========
 
+4.5.1
+-----
+
+* Fixed inability to set custom order to 0 (#50), thanks to @kavdev
+
 1.5.0
 -----
 

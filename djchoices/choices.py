@@ -7,7 +7,6 @@ from django.core.exceptions import ValidationError
 from django.utils import six
 from django.utils.deconstruct import deconstructible
 
-
 __all__ = ["ChoiceItem", "DjangoChoices", "C"]
 
 
@@ -34,7 +33,24 @@ class StaticProp(object):
     def __get__(self, obj, objtype):
         return self.value
 
+
+class Attributes(object):
+
+    def __init__(self, attrs, fields):
+        self.attrs = attrs
+        self.fields = fields
+
+    def __get__(self, obj, objtype):
+        if len(self.attrs) != len(self.fields):
+            raise ValueError(
+                'Not all values are unique, it\'s not possible to map all '
+                'values to the right attribute'
+            )
+        return self.attrs
+
+
 # End Support Functionality
+
 
 sentinel = object()
 
@@ -53,7 +69,7 @@ class ChoiceItem(object):
         self.value = value
         self.label = label
 
-        if order:
+        if order is not None:
             self.order = order
         else:
             ChoiceItem.order += 1
@@ -73,6 +89,7 @@ class DjangoChoicesMeta(type):
         fields = {}
         labels = Labels()
         values = OrderedDict()
+        attributes = OrderedDict()
         choices = []
 
         # Get all the fields from parent classes.
@@ -103,6 +120,7 @@ class DjangoChoicesMeta(type):
                 attrs[field_name] = StaticProp(val0)
                 setattr(labels, field_name, label)
                 values[val0] = label
+                attributes[val0] = field_name
             else:
                 choices.append((field_name, val.choices))
 
@@ -111,6 +129,7 @@ class DjangoChoicesMeta(type):
         attrs["values"] = values
         attrs["_fields"] = fields
         attrs["validator"] = ChoicesValidator(values)
+        attrs["attributes"] = Attributes(attributes, fields)
 
         return super(DjangoChoicesMeta, cls).__new__(cls, name, bases, attrs)
 
