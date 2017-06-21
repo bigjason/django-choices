@@ -70,7 +70,7 @@ class ChoiceItem(object):
         self.value = value
         self.label = label
 
-        if order:
+        if order is not None:
             self.order = order
         else:
             ChoiceItem.order += 1
