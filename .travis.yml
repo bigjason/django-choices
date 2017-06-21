@@ -38,3 +38,5 @@ env:
   - TOXENV=pypy-djangolatest
 
   - TOXENV=docs
+  - TOXENV=isort
+  - TOXENV=docs

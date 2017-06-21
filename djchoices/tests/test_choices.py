@@ -1,6 +1,6 @@
 import unittest
 
-from djchoices import DjangoChoices, C, ChoiceItem
+from djchoices import C, ChoiceItem, DjangoChoices
 
 
 class NumericTestClass(DjangoChoices):

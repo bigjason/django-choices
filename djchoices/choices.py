@@ -7,7 +7,6 @@ from django.core.exceptions import ValidationError
 from django.utils import six
 from django.utils.deconstruct import deconstructible
 
-
 __all__ = ["ChoiceItem", "DjangoChoices", "C"]
 
 

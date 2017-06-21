@@ -1,6 +1,6 @@
 import unittest
 
-from djchoices import DjangoChoices, C, ChoiceItem  # noqa
+from djchoices import C, ChoiceItem, DjangoChoices  # noqa
 
 
 class PrivateAPITests(unittest.TestCase):
