@@ -49,6 +49,11 @@ class OrderedChoices(DjangoChoices):
     Option2 = ChoiceItem('b', order=0)
 
 
+class ExtraAttributeChoices(DjangoChoices):
+    Option1 = ChoiceItem(0, help_text="Option1 help text")
+    Option2 = ChoiceItem(1, help_text="Option2 help text", validator_class_name="RegexValidator")
+
+
 class DjangoChoices(unittest.TestCase):
     def setUp(self):
         pass
@@ -209,3 +214,42 @@ class DjangoChoices(unittest.TestCase):
         choices = OrderedChoices.choices
         self.assertEqual(choices[0][0], 'b')
         self.assertEqual(choices[1][0], 'a')
+
+    def test_get_choices(self):
+        choices_class = NullBooleanValueClass
+
+        self.assertEqual("Pending", choices_class.get_choice(None).label)
+        self.assertEqual("Successful", choices_class.get_choice(True).label)
+        self.assertEqual("Failed", choices_class.get_choice(False).label)
+
+    def test_get_extra_attributes(self):
+        choices_class = ExtraAttributeChoices
+
+        self.assertEqual(
+            "Option1 help text",
+            choices_class.get_choice(choices_class.Option1).help_text
+        )
+
+        self.assertEqual(
+            "Option2 help text",
+            choices_class.get_choice(choices_class.Option2).help_text
+        )
+
+        self.assertEqual(
+            "RegexValidator",
+            choices_class.get_choice(choices_class.Option2).validator_class_name
+        )
+
+    def test_get_extra_attributes_unknown_attribute_throws_error(self):
+        choices_class = ExtraAttributeChoices
+
+        with self.assertRaises(AttributeError):
+            choices_class.get_choice(choices_class.Option1).unknown_attribute
+
+    def test_repr(self):
+        choices_class = ExtraAttributeChoices
+        repr_string = repr(choices_class.get_choice(choices_class.Option2))
+
+        self.assertIn("<ChoiceItem value=1 label=None order=22", repr_string)
+        self.assertIn("validator_class_name='RegexValidator'", repr_string)
+        self.assertIn("help_text='Option2 help text'", repr_string)

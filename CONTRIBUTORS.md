@@ -11,3 +11,4 @@ Many thanks to the various contributors:
 * https://github.com/vaad2
 * https://github.com/WoLpH
 * https://github.com/ashwch
+* [Alexander Kavanaugh](https://github.com/kavdev)

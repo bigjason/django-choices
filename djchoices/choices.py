@@ -65,15 +65,37 @@ class ChoiceItem(object):
     """
     order = 0
 
-    def __init__(self, value=sentinel, label=None, order=None):
+    def __init__(self, value=sentinel, label=None, order=None, **extra):
         self.value = value
         self.label = label
+        self._extra = extra
 
         if order is not None:
             self.order = order
         else:
             ChoiceItem.order += 1
             self.order = ChoiceItem.order
+
+    def __repr__(self):
+        extras = " ".join([
+            "{key}={value!r}".format(key=key, value=value)
+            for key, value in self._extra.items()
+        ])
+
+        return "<{} value={!r} label={!r} order={!r}{extras}>".format(
+            self.__class__.__name__,
+            self.value,
+            self.label,
+            self.order,
+            extras=" " + extras if extras else ""
+        )
+
+    def __getattr__(self, name):
+        try:
+            return self._extra[name]
+        except KeyError:
+            raise AttributeError("{!r} object has no attribute {!r}".format(self.__class__, name))
+
 
 # Shorter convenience alias.
 C = ChoiceItem  # noqa
@@ -158,3 +180,11 @@ class DjangoChoices(six.with_metaclass(DjangoChoicesMeta)):
     labels = Labels()
     values = {}
     validator = None
+
+    @classmethod
+    def get_choice(cls, value):
+        """
+        Return the underlying :class:`ChoiceItem` for a given value.
+        """
+        attribute_for_value = cls.attributes[value]
+        return cls._fields[attribute_for_value]
