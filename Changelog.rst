@@ -2,6 +2,15 @@
 Changelog
 =========
 
+1.6.0
+-----
+
+* Added support for custom attributes to ``ChoiceItem``.
+* Added ``DjangoChoices.get_choice`` as public API to retrieve a ``ChoiceItem``
+  instance.
+
+See the docs for example usage.
+
 1.5.1
 -----
 
