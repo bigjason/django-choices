@@ -2,10 +2,22 @@
 Changelog
 =========
 
-4.5.1
+1.6.0
 -----
 
-* Fixed inability to set custom order to 0 (#50), thanks to @kavdev
+* Added support for custom attributes to ``ChoiceItem``.
+* Added ``DjangoChoices.get_choice`` as public API to retrieve a ``ChoiceItem``
+  instance.
+
+See the docs for example usage.
+
+1.5.1
+-----
+
+* Fixed inability to set custom order to 0 (#50), thanks to @kavdev for the
+  patch and @robinramael for the report
+* Added API to get the attribute name from a value (#48), thanks to @jaseemabid
+  for the report
 
 1.5.0
 -----

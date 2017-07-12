@@ -14,8 +14,8 @@ Basic usage
         my_choice = ChoiceItem(1, 'label 1')
 
 
-The first argument for `ChoiceItem` is the value, as it will be stored
-in the database. `ChoiceItem` values can be any type, as long as it matches
+The first argument for ``ChoiceItem`` is the value, as it will be stored
+in the database. ``ChoiceItem`` values can be any type, as long as it matches
 the field where the choices are defined, e.g.:
 
 String type:
@@ -42,8 +42,22 @@ or integer:
         field = models.IntegerField(choices=Ints.choices)
 
 
-There is also a 'short name'. You can import `C` instead of `ChoiceItem`, if
+There is also a 'short name'. You can import ``C`` instead of `ChoiceItem`, if
 you're into that.
+
+Custom attributes
++++++++++++++++++
+
+Any additional (custom) keyword arguments passed to the constructor, are made
+available as custom attributes:
+
+.. code-block:: python
+
+    >>> choice = ChoiceItem('excellent', limit_to=['US', 'CA', 'CN'])
+    >>> choice.limit_to
+    ['US', 'CA', "CN"]
+
+To obtain the ``ChoiceItem`` instance, see :ref:`djangochoices.get_choice`
 
 
 Labels
@@ -194,3 +208,22 @@ on the choices class.
 
     >>> MyChoices.attributes
     OrderedDict([(1, 'first_choice'), (2, 'second_choice')])
+
+
+.. _djangochoices.get_choice:
+
+get_choice
+++++++++++
+
+Returns the actual ``ChoiceItem`` instance for a given value:
+
+.. code-block:: python
+
+    >>> class MyChoices(DjangoChoices):
+    ...     first_choice = ChoiceItem(1, 'label 1')
+    ...     second_choice = ChoiceItem(2, 'label 2')
+
+    >>> MyChoices.get_choice(MyChoices.second_choice)
+    <ChoiceItem value=2 label='label 2' order=1>
+
+This allows you to inspect any ``ChoiceItem`` attributes.
