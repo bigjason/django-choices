@@ -253,3 +253,11 @@ class DjangoChoices(unittest.TestCase):
         self.assertIn("<ChoiceItem value=1 label=None order=22", repr_string)
         self.assertIn("validator_class_name='RegexValidator'", repr_string)
         self.assertIn("help_text='Option2 help text'", repr_string)
+
+    def test_iteration(self):
+        """
+        If this test fails it will raise:
+        `TypeError: 'DjangoChoicesMeta' object is not iterable`
+        """
+        for _ in StringTestClass:
+            pass

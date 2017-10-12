@@ -107,6 +107,10 @@ class DjangoChoicesMeta(type):
     """
     name_clean = re.compile(r"_+")
 
+    def __iter__(self):
+        for choice in self.choices:
+            yield choice
+
     def __new__(cls, name, bases, attrs):
         fields = {}
         labels = Labels()
