@@ -261,3 +261,6 @@ class DjangoChoices(unittest.TestCase):
         """
         for _ in StringTestClass:
             pass
+
+    def test_choices_len(self):
+        self.assertEqual(len(StringTestClass), 4)
