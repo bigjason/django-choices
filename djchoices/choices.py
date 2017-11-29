@@ -111,6 +111,9 @@ class DjangoChoicesMeta(type):
         for choice in self.choices:
             yield choice
 
+    def __len__(self):
+        return len(self.choices)
+
     def __new__(cls, name, bases, attrs):
         fields = {}
         labels = Labels()
