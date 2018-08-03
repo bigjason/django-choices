@@ -2,18 +2,7 @@
 Django-Choices
 ============================
 
-.. image:: https://secure.travis-ci.org/bigjason/django-choices.svg?branch=master
-    :target: http://travis-ci.org/bigjason/django-choices
-
-.. image:: https://coveralls.io/repos/bigjason/django-choices/badge.svg?branch=master&service=github
-    :target: https://coveralls.io/github/bigjason/django-choices?branch=master
-
-.. image:: https://readthedocs.org/projects/django-choices/badge/?version=latest
-    :target: http://django-choices.readthedocs.io/en/latest/
-    :alt: Documentation Status
-
-.. image:: https://img.shields.io/pypi/v/django-choices.svg
-  :target: https://pypi.python.org/pypi/django-choices
+|travis| |coverage| |docs| |pypi| |python-versions| |django-versions|
 
 Order and sanity for django model choices.
 ------------------------------------------------------
@@ -93,7 +82,24 @@ Souce Code
 ----------
 The source code can be found on github_.
 
-.. _choices: http://docs.djangoproject.com/en/1.8/ref/models/fields/#choices
+.. |travis| image:: https://secure.travis-ci.org/bigjason/django-choices.svg?branch=master
+    :target: http://travis-ci.org/bigjason/django-choices
+
+.. |coverage| image:: https://coveralls.io/repos/bigjason/django-choices/badge.svg?branch=master&service=github
+    :target: https://coveralls.io/github/bigjason/django-choices?branch=master
+
+.. |docs| image:: https://readthedocs.org/projects/django-choices/badge/?version=latest
+    :target: http://django-choices.readthedocs.io/en/latest/
+    :alt: Documentation Status
+
+.. |pypi| image:: https://img.shields.io/pypi/v/django-choices.svg
+    :target: https://pypi.python.org/pypi/django-choices
+
+.. |python-versions| image:: https://img.shields.io/pypi/pyversions/django-choices.svg
+
+.. |django-versions| image:: https://img.shields.io/pypi/djversions/django-choices.svg
+
+.. _choices: http://docs.djangoproject.com/en/stable/ref/models/fields/#choices
 .. _MIT License: http://en.wikipedia.org/wiki/MIT_License
 .. _django: http://www.djangoproject.com/
 .. _github: https://github.com/bigjason/django-choices
