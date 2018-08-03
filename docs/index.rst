@@ -10,15 +10,7 @@ Django-Choices
 
 .. rubric:: Order and sanity for django model choices.
 
-.. image:: https://travis-ci.org/bigjason/django-choices.png
-    :target: http://travis-ci.org/bigjason/django-choices
-
-.. image:: https://coveralls.io/repos/bigjason/django-choices/badge.svg
-    :target: https://coveralls.io/github/bigjason/django-choices?branch=master
-
-.. image:: https://img.shields.io/pypi/v/django-choices.svg
-  :target: https://pypi.python.org/pypi/django-choices
-
+|travis| |coverage| |docs| |pypi| |python-versions| |django-versions|
 
 Contents:
 
@@ -115,6 +107,22 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
+.. |travis| image:: https://secure.travis-ci.org/bigjason/django-choices.svg?branch=master
+    :target: http://travis-ci.org/bigjason/django-choices
+
+.. |coverage| image:: https://coveralls.io/repos/bigjason/django-choices/badge.svg?branch=master&service=github
+    :target: https://coveralls.io/github/bigjason/django-choices?branch=master
+
+.. |docs| image:: https://readthedocs.org/projects/django-choices/badge/?version=latest
+    :target: http://django-choices.readthedocs.io/en/latest/
+    :alt: Documentation Status
+
+.. |pypi| image:: https://img.shields.io/pypi/v/django-choices.svg
+    :target: https://pypi.python.org/pypi/django-choices
+
+.. |python-versions| image:: https://img.shields.io/pypi/pyversions/django-choices.svg
+
+.. |django-versions| image:: https://img.shields.io/pypi/djversions/django-choices.svg
 
 .. _django: http://www.djangoproject.com/
 .. _choices: https://docs.djangoproject.com/en/dev/ref/models/fields/#choices

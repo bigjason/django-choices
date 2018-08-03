@@ -1,42 +1,39 @@
 language: python
-python: 
-  - "3.5"
+cache: pip
 sudo: false
 
-install:
-  - pip install coverage coveralls tox
-script:
-  - tox
-after_success:
-  - coveralls
+python: 
+  - "2.7"
+  - "3.4"
+  - "3.5"
+  - "3.6"
 
 env:
-  - TOXENV=py27-django18
-  - TOXENV=py27-django19
-  - TOXENV=py27-django110
-  - TOXENV=py27-django111
-  - TOXENV=py27-djangolatest
+  - DJANGO=1.8
+  - DJANGO=1.9
+  - DJANGO=1.10
+  - DJANGO=1.11
+  - DJANGO=2.0
+  - DJANGO=2.1
 
-  - TOXENV=py33-django18
+matrix:
+  fast_finish: true
+  exclude:
+    - { python: "2.7", env: DJANGO=2.0 }
+    - { python: "2.7", env: DJANGO=2.1 }
+    - { python: "3.4", env: DJANGO=2.1 }
+    - { python: "3.6", env: DJANGO=1.8 }
+    - { python: "3.6", env: DJANGO=1.9 }
+    - { python: "3.6", env: DJANGO=1.10 }
 
-  - TOXENV=py34-django18
-  - TOXENV=py34-django19
-  - TOXENV=py34-django110
-  - TOXENV=py34-django111
-  - TOXENV=py34-djangolatest
+install:
+  - pip install coverage coveralls tox tox-travis
 
-  - TOXENV=py35-django18
-  - TOXENV=py35-django19
-  - TOXENV=py35-django110
-  - TOXENV=py35-django111
-  - TOXENV=py35-djangolatest
+script:
+  - tox
 
-  - TOXENV=pypy-django18
-  - TOXENV=pypy-django19
-  - TOXENV=pypy-django110
-  - TOXENV=pypy-django111
-  - TOXENV=pypy-djangolatest
+after_success:
+  - coveralls
+  - pip install codecov
+  - codecov -e TOXENV,DJANGO
 
-  - TOXENV=docs
-  - TOXENV=isort
-  - TOXENV=docs
