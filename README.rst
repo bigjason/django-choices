@@ -15,11 +15,15 @@ Installation
 ------------
 You can install via PyPi_ or direct from the github_ repo.
 
-To install with pip::
+To install with pip:
+
+.. code-block:: bash
 
     $ pip install django-choices
 
-To install with easy_install::
+To install with easy_install:
+
+.. code-block:: bash
 
     $ easy_install django-choices
 
@@ -29,7 +33,9 @@ Basic Usage
 To start you create a choices class. Then you point the choices property on your
 fields to the ``choices`` attribute of the new class. Django will be able to use
 the choices and you will be able to access the values by name.  For example you
-can replace this::
+can replace this:
+
+.. code-block:: python
 
     # In models.py
     class Person(models.Model):
@@ -43,7 +49,9 @@ can replace this::
         name = models.CharField(max_length=32)
         type = models.CharField(max_length=1, choices=PERSON_TYPE)
 
-With this::
+With this:
+
+.. code-block:: python
 
     # In models.py
     from djchoices import DjangoChoices, ChoiceItem
@@ -59,12 +67,16 @@ With this::
         name = models.CharField(max_length=32)
         type = models.CharField(max_length=1, choices=PersonType.choices)
 
-You can use this elsewhere like this::
+You can use this elsewhere like this:
+
+.. code-block:: python
 
     # Other code
     Person.create(name="Phil", type=Person.PersonType.groundhog)
 
-You can use them without value, and the label will be used as value::
+You can use them without value, and the label will be used as value:
+
+.. code-block:: python
 
     class Sample(DjangoChoices):
         option_a = ChoiceItem()
