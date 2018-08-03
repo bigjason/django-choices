@@ -153,7 +153,8 @@ choices
 labels
 ++++++
 
-Returns a dictionary with a mapping from label to value:
+Returns a dictionary with a mapping from attribute to the human-readable
+label:
 
 .. code-block:: python
 
@@ -163,6 +164,8 @@ Returns a dictionary with a mapping from label to value:
 
     >>> MyChoices.labels
     {'first_choice': 1, 'second_choice': 2}
+    >>> MyChoices.labels.first_choice
+    "first choice"
 
 
 values
