@@ -9,6 +9,7 @@ Changelog
 * ``DjangoChoices`` subclasses are now directly iterable (yielding the choice
   tuples) (@brianjbuck in #53)
 * documentation of ``DjangoChoices.labels`` is fixed (#54)
+* typo fixed in docs (@nielznl in #57)
 
 1.6.0
 -----
