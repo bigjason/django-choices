@@ -90,7 +90,7 @@ License
 Licensed under the `MIT License`_.
 
 ----------
-Souce Code
+Source Code
 ----------
 The source code can be found on github_.
 
