@@ -2,6 +2,14 @@
 Changelog
 =========
 
+1.6.2 (2019-01-24)
+------------------
+
+* documentation code blocks are now syntax highlighted (@bashu in #55)
+* ``DjangoChoices`` subclasses are now directly iterable (yielding the choice
+  tuples) (@brianjbuck in #53)
+* documentation of ``DjangoChoices.labels`` is fixed (#54)
+
 1.6.0
 -----
 
