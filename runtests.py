@@ -8,6 +8,8 @@ from django.conf import settings
 def get_suite():
     disc_folder = path.abspath(path.dirname(__file__))
 
+    settings.configure(SECRET_KEY='dummy')
+
     stdout.write("Discovering tests in '%s'..." % disc_folder)
     suite = unittest.TestSuite()
     loader = unittest.loader.defaultTestLoader
@@ -17,10 +19,6 @@ def get_suite():
 
 
 def run_tests():
-    settings.configure(
-        SECRET_KEY='dummy',
-    )
-
     suite = get_suite()
     stdout.write("Running tests...\n")
     runner = unittest.TextTestRunner()
