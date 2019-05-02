@@ -230,3 +230,31 @@ Returns the actual ``ChoiceItem`` instance for a given value:
     <ChoiceItem value=2 label='label 2' order=1>
 
 This allows you to inspect any ``ChoiceItem`` attributes.
+
+get_order_expression
+++++++++++++++++++++
+
+Build the ``Case``/``When`` statement to use in queryset annotations.
+
+Choices defined get an implicit or explicit order, which can have semantic
+value. This ORM expression allows you to map choice values to the order value,
+as an integer, on the database level.
+
+It is then available for subsequent filtering, allowing more work to be done
+in the database instead of in Python.
+
+.. code-block:: python
+
+    >>> class MyChoices(DjangoChoices):
+    ...     first = ChoiceItem('first')
+    ...     second = ChoiceItem('second')
+
+    >>> order = MyChoices.get_order_expression('some_field')
+    >>> queryset = Model.objects.annotate(some_field_order=order)
+    >>> for item in queryset:
+    ...     print(item.some_field)
+    ...     print(item.some_field_order)
+    # first_
+    # 1
+    # second
+    # 2

@@ -4,6 +4,7 @@ import re
 from collections import OrderedDict
 
 from django.core.exceptions import ValidationError
+from django.db.models import Case, IntegerField, Value, When
 from django.utils import six
 from django.utils.deconstruct import deconstructible
 
@@ -195,3 +196,30 @@ class DjangoChoices(six.with_metaclass(DjangoChoicesMeta)):
         """
         attribute_for_value = cls.attributes[value]
         return cls._fields[attribute_for_value]
+
+    @classmethod
+    def get_order_expression(cls, field_name):
+        """
+        Build the Case/When to annotate objects with the choice item order
+
+        Useful if choices represent some access-control mechanism, for example.
+
+        Usage::
+
+        >>> order = MyChoices.get_order_expression('some_field')
+        >>> queryset = Model.objects.annotate(some_field_order=order)
+        >>> for item in queryset:
+        ...     print(item.some_field)
+        ...     print(item.some_field_order)
+        # first_choice
+        # 1
+        # second_choice
+        # 2
+        """
+        whens = []
+        for choice_item in cls._fields.values():
+            whens.append(When(**{
+                field_name: choice_item.value,
+                "then": Value(choice_item.order)
+            }))
+        return Case(*whens, output_field=IntegerField())

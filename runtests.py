@@ -1,10 +1,8 @@
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
-
+import unittest
 from os import path
 from sys import stdout
+
+from django.conf import settings
 
 
 def get_suite():
@@ -19,6 +17,10 @@ def get_suite():
 
 
 def run_tests():
+    settings.configure(
+        SECRET_KEY='dummy',
+    )
+
     suite = get_suite()
     stdout.write("Running tests...\n")
     runner = unittest.TextTestRunner()
