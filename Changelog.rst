@@ -2,6 +2,13 @@
 Changelog
 =========
 
+1.7.0 (2019-05-02)
+------------------
+
+* Added ``DjangoChoices.get_order_expression`` class method
+* Added support for Python 3.7 and Django 2.2
+* Dropped support for Django 1.8, Django 1.9 and Django 1.10
+
 1.6.2 (2019-01-24)
 ------------------
 

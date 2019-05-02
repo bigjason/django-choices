@@ -1,14 +1,14 @@
-try:
-    import unittest2 as unittest
-except ImportError:
-    import unittest
-
+import unittest
 from os import path
 from sys import stdout
+
+from django.conf import settings
 
 
 def get_suite():
     disc_folder = path.abspath(path.dirname(__file__))
+
+    settings.configure(SECRET_KEY='dummy')
 
     stdout.write("Discovering tests in '%s'..." % disc_folder)
     suite = unittest.TestSuite()

@@ -1,5 +1,7 @@
 import unittest
 
+from django.db.models import Case, IntegerField, Value, When
+
 from djchoices import C, ChoiceItem, DjangoChoices
 
 
@@ -264,3 +266,14 @@ class DjangoChoices(unittest.TestCase):
 
     def test_choices_len(self):
         self.assertEqual(len(StringTestClass), 4)
+
+    def test_order_annotation(self):
+        case = OrderedChoices.get_order_expression('dummy')
+
+        expected = Case(
+            When(dummy='b', then=Value(0)),
+            When(dummy='a', then=Value(1)),
+            output_field=IntegerField()
+        )
+
+        self.assertEqual(repr(case), repr(expected))
