@@ -72,7 +72,7 @@ To use it, you write a choices class, and use it in your model fields:
         )
 
 
-You can then use the availe choices in other modules, e.g.:
+You can then use the available choices in other modules, e.g.:
 
 
 .. code-block:: python
@@ -92,8 +92,8 @@ License
 -------
 Licensed under the `MIT License`_.
 
-Souce Code and contributing
----------------------------
+Source Code and contributing
+----------------------------
 The source code can be found on github_.
 
 Bugs can also be reported on the github_ repository, and pull requests
