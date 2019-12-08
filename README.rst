@@ -1,11 +1,11 @@
-============================
+==============
 Django-Choices
-============================
+==============
 
 |travis| |coverage| |docs| |pypi| |python-versions| |django-versions|
 
 Order and sanity for django model choices.
-------------------------------------------------------
+------------------------------------------
 
 Django choices provides a declarative way of using the choices_ option on django_
 fields. Read the full `documentation`_ on ReadTheDocs.
@@ -13,23 +13,17 @@ fields. Read the full `documentation`_ on ReadTheDocs.
 ------------
 Installation
 ------------
-You can install via PyPi_ or direct from the github_ repo.
 
-To install with pip:
+You can install via PyPi_ or direct from the github_ repo.
 
 .. code-block:: bash
 
     $ pip install django-choices
 
-To install with easy_install:
-
-.. code-block:: bash
-
-    $ easy_install django-choices
-
 -----------
 Basic Usage
 -----------
+
 To start you create a choices class. Then you point the choices property on your
 fields to the ``choices`` attribute of the new class. Django will be able to use
 the choices and you will be able to access the values by name.  For example you
@@ -87,11 +81,13 @@ You can use them without value, and the label will be used as value:
 -------
 License
 -------
+
 Licensed under the `MIT License`_.
 
-----------
+-----------
 Source Code
-----------
+-----------
+
 The source code can be found on github_.
 
 .. |travis| image:: https://secure.travis-ci.org/bigjason/django-choices.svg?branch=master
@@ -111,9 +107,9 @@ The source code can be found on github_.
 
 .. |django-versions| image:: https://img.shields.io/pypi/djversions/django-choices.svg
 
-.. _choices: http://docs.djangoproject.com/en/stable/ref/models/fields/#choices
-.. _MIT License: http://en.wikipedia.org/wiki/MIT_License
-.. _django: http://www.djangoproject.com/
+.. _choices: https://docs.djangoproject.com/en/stable/ref/models/fields/#choices
+.. _MIT License: https://en.wikipedia.org/wiki/MIT_License
+.. _django: https://www.djangoproject.com/
 .. _github: https://github.com/bigjason/django-choices
-.. _PyPi: http://pypi.python.org/pypi/django-choices/
-.. _documentation: http://django-choices.readthedocs.io/en/latest/
+.. _PyPi: https://pypi.org/project/django-choices/
+.. _documentation: https://django-choices.readthedocs.io/en/latest/
