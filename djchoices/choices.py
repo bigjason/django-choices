@@ -5,8 +5,9 @@ from collections import OrderedDict
 
 from django.core.exceptions import ValidationError
 from django.db.models import Case, IntegerField, Value, When
-from django.utils import six
 from django.utils.deconstruct import deconstructible
+
+import six
 
 __all__ = ["ChoiceItem", "DjangoChoices", "C"]
 

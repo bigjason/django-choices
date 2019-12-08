@@ -11,7 +11,7 @@ setup(
     license="MIT",
     description="Sanity for the django choices functionality.",
     long_description=readme,
-    install_requires=['Django>=1.11'],
+    install_requires=['Django>=1.11', 'six>=1.13.0'],
     test_suite='runtests.get_suite',
     url="https://github.com/bigjason/django-choices",
     author="Jason Webb",
