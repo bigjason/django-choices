@@ -10,6 +10,10 @@ Order and sanity for django model choices.
 Django choices provides a declarative way of using the choices_ option on django_
 fields. Read the full `documentation`_ on ReadTheDocs.
 
+**Note:** Django 3.0 added `enumeration types <https://docs.djangoproject.com/en/3.0/releases/3.0/#enumerations-for-model-field-choices>`__.
+This feature mostly replaces the need for Django-Choices.
+See also `Adam Johnson's post on using them <https://adamj.eu/tech/2020/01/27/moving-to-django-3-field-choices-enumeration-types/>`__.
+
 ------------
 Installation
 ------------
