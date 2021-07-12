@@ -66,17 +66,19 @@ jobs:
           python-version: ${{ matrix.python }}
 
       - name: Install dependencies
-        run: pip install tox tox-gh-actions codecov coveralls
+        run: pip install tox tox-gh-actions codecov
 
       - name: Run tests
         run: |
           tox
           codecov -e TOXENV,DJANGO
-          coveralls
         env:
           PYTHON_VERSION: ${{ matrix.python }}
           DJANGO: ${{ matrix.django }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
   # publish:
   #   name: Publish package to PyPI
