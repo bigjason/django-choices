@@ -10,7 +10,7 @@ Django-Choices
 
 .. rubric:: Order and sanity for django model choices.
 
-|travis| |coverage| |docs| |pypi| |python-versions| |django-versions|
+|build-status| |code-quality| |coverage| |docs| |black| |pypi| |python-versions| |django-versions|
 
 Contents:
 
@@ -110,8 +110,13 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
-.. |travis| image:: https://secure.travis-ci.org/bigjason/django-choices.svg?branch=master
-    :target: http://travis-ci.org/bigjason/django-choices
+.. |build-status| image:: https://github.com/bigjason/django-choices/actions/workflows/ci.yml/badge.svg
+    :alt: Build status
+    :target: https://github.com/bigjason/django-choices/actions/workflows/ci.yml
+
+.. |code-quality| image:: https://github.com/bigjason/django-choices/actions//workflows/code_quality.yml/badge.svg
+    :alt: Code quality checks
+    :target: https://github.com/bigjason/django-choices/actions//workflows/code_quality.yml
 
 .. |coverage| image:: https://coveralls.io/repos/bigjason/django-choices/badge.svg?branch=master&service=github
     :target: https://coveralls.io/github/bigjason/django-choices?branch=master
@@ -126,6 +131,9 @@ Indices and tables
 .. |python-versions| image:: https://img.shields.io/pypi/pyversions/django-choices.svg
 
 .. |django-versions| image:: https://img.shields.io/pypi/djversions/django-choices.svg
+
+.. |black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
+    :target: https://github.com/psf/black
 
 .. _django: http://www.djangoproject.com/
 .. _choices: https://docs.djangoproject.com/en/dev/ref/models/fields/#choices

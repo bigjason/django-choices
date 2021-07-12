@@ -2,7 +2,7 @@
 Django-Choices
 ==============
 
-|travis| |coverage| |docs| |black| |pypi| |python-versions| |django-versions|
+|build-status| |code-quality| |coverage| |docs| |black| |pypi| |python-versions| |django-versions|
 
 Order and sanity for django model choices.
 ------------------------------------------
@@ -94,8 +94,13 @@ Source Code
 
 The source code can be found on github_.
 
-.. |travis| image:: https://secure.travis-ci.org/bigjason/django-choices.svg?branch=master
-    :target: http://travis-ci.org/bigjason/django-choices
+.. |build-status| image:: https://github.com/bigjason/django-choices/actions/workflows/ci.yml/badge.svg
+    :alt: Build status
+    :target: https://github.com/bigjason/django-choices/actions/workflows/ci.yml
+
+.. |code-quality| image:: https://github.com/bigjason/django-choices/actions//workflows/code_quality.yml/badge.svg
+    :alt: Code quality checks
+    :target: https://github.com/bigjason/django-choices/actions//workflows/code_quality.yml
 
 .. |coverage| image:: https://coveralls.io/repos/bigjason/django-choices/badge.svg?branch=master&service=github
     :target: https://coveralls.io/github/bigjason/django-choices?branch=master

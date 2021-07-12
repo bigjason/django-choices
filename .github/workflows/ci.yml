@@ -1,0 +1,107 @@
+name: Run CI
+
+# Run this workflow every time a new commit pushed to your repository
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - '*'
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python:
+          - '3.5'
+          - '3.6 '
+          - '3.7'
+          - '3.8'
+          - '3.9'
+        django:
+          - '1.11'
+          - '2.0'
+          - '2.1'
+          - '2.2'
+          - '3.0'
+          - '3.1'
+          - '3.2'
+      include:
+        - python: '2.7'
+          django: '1.11'
+
+        - python: '3.4'
+          django: '1.11'
+        - python: '3.4'
+          django: '2.0'
+      exclude:
+        # python 3.5 is < django 3
+        - python: '3.5'
+          django: '3.0'
+        - python: '3.5'
+          django: '3.1'
+        - python: '3.5'
+          django: '3.2'
+
+        # python 3.8 is django 2.2+
+        - python: '3.8'
+          django: '1.11'
+        - python: '3.8'
+          django: '2.0'
+        - python: '3.8'
+          django: '2.1'
+
+        # python 3.9 is django 2.2+
+        - python: '3.9'
+          django: '1.11'
+        - python: '3.9'
+          django: '2.0'
+        - python: '3.9'
+          django: '2.1'
+
+    name: Run the test suite (Python ${{ matrix.python }}, Django ${{ matrix.django }})
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Install dependencies
+        run: pip install tox tox-gh-actions codecov
+
+      - name: Run tests
+        run: |
+          tox
+          codecov -e TOXENV,DJANGO
+          coveralls
+        env:
+          PYTHON_VERSION: ${{ matrix.python }}
+          DJANGO: ${{ matrix.django }}
+
+  # publish:
+  #   name: Publish package to PyPI
+  #   runs-on: ubuntu-latest
+  #   needs: tests
+
+  #   if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
+
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: actions/setup-python@v2
+  #       with:
+  #         python-version: '3.8'
+
+  #     - name: Build sdist and wheel
+  #       run: |
+  #         pip install pip setuptools wheel --upgrade
+  #         python setup.py sdist bdist_wheel
+
+  #     - name: Publish a Python distribution to PyPI
+  #       uses: pypa/gh-action-pypi-publish@v1.4.1
+  #       with:
+  #         user: __token__
+  #         password: ${{ secrets.PYPI_TOKEN }}
