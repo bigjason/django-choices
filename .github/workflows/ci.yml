@@ -76,10 +76,6 @@ jobs:
           PYTHON_VERSION: ${{ matrix.python }}
           DJANGO: ${{ matrix.django }}
 
-      - uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-
   # publish:
   #   name: Publish package to PyPI
   #   runs-on: ubuntu-latest

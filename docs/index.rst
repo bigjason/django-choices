@@ -118,8 +118,9 @@ Indices and tables
     :alt: Code quality checks
     :target: https://github.com/bigjason/django-choices/actions//workflows/code_quality.yml
 
-.. |coverage| image:: https://coveralls.io/repos/bigjason/django-choices/badge.svg?branch=master&service=github
-    :target: https://coveralls.io/github/bigjason/django-choices?branch=master
+.. |coverage| image:: https://codecov.io/gh/bigjason/django-choices/branch/master/graph/badge.svg?token=pcbBUCju0B
+    :alt: Code coverage
+    :target: https://codecov.io/gh/bigjason/django-choices
 
 .. |docs| image:: https://readthedocs.org/projects/django-choices/badge/?version=latest
     :target: http://django-choices.readthedocs.io/en/latest/
