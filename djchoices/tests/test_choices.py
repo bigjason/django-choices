@@ -42,18 +42,20 @@ class NullBooleanValueClass(DjangoChoices):
 
 
 class DuplicateValuesClass(DjangoChoices):
-    Option1 = ChoiceItem('a')
-    Option2 = ChoiceItem('a')
+    Option1 = ChoiceItem("a")
+    Option2 = ChoiceItem("a")
 
 
 class OrderedChoices(DjangoChoices):
-    Option1 = ChoiceItem('a', order=1)
-    Option2 = ChoiceItem('b', order=0)
+    Option1 = ChoiceItem("a", order=1)
+    Option2 = ChoiceItem("b", order=0)
 
 
 class ExtraAttributeChoices(DjangoChoices):
     Option1 = ChoiceItem(0, help_text="Option1 help text")
-    Option2 = ChoiceItem(1, help_text="Option2 help text", validator_class_name="RegexValidator")
+    Option2 = ChoiceItem(
+        1, help_text="Option2 help text", validator_class_name="RegexValidator"
+    )
 
 
 class DjangoChoices(unittest.TestCase):
@@ -149,11 +151,9 @@ class DjangoChoices(unittest.TestCase):
     def test_validation_error_message(self):
         from django.core.exceptions import ValidationError
 
-        message = ("Select a valid choice. 4 is not "
-                   "one of the available choices.")
+        message = "Select a valid choice. 4 is not " "one of the available choices."
 
-        self.assertRaisesRegexp(ValidationError, message,
-                                NumericTestClass.validator, 4)
+        self.assertRaisesRegexp(ValidationError, message, NumericTestClass.validator, 4)
 
     def test_subclass1_validator(self):
         from django.core.exceptions import ValidationError
@@ -197,16 +197,17 @@ class DjangoChoices(unittest.TestCase):
 
     def test_deconstructible_validator(self):
         deconstructed = NumericTestClass.validator.deconstruct()
-        self.assertEqual(deconstructed, (
-            'djchoices.choices.ChoicesValidator', (NumericTestClass.values,), {}
-        ))
+        self.assertEqual(
+            deconstructed,
+            ("djchoices.choices.ChoicesValidator", (NumericTestClass.values,), {}),
+        )
 
     def test_attribute_from_value(self):
         attributes = NumericTestClass.attributes
-        self.assertEqual(attributes[0], 'Item_0')
-        self.assertEqual(attributes[1], 'Item_1')
-        self.assertEqual(attributes[2], 'Item_2')
-        self.assertEqual(attributes[3], 'Item_3')
+        self.assertEqual(attributes[0], "Item_0")
+        self.assertEqual(attributes[1], "Item_1")
+        self.assertEqual(attributes[2], "Item_2")
+        self.assertEqual(attributes[3], "Item_3")
 
     def test_attribute_from_value_duplicates(self):
         with self.assertRaises(ValueError):
@@ -214,8 +215,8 @@ class DjangoChoices(unittest.TestCase):
 
     def test_choice_item_order(self):
         choices = OrderedChoices.choices
-        self.assertEqual(choices[0][0], 'b')
-        self.assertEqual(choices[1][0], 'a')
+        self.assertEqual(choices[0][0], "b")
+        self.assertEqual(choices[1][0], "a")
 
     def test_get_choices(self):
         choices_class = NullBooleanValueClass
@@ -229,17 +230,17 @@ class DjangoChoices(unittest.TestCase):
 
         self.assertEqual(
             "Option1 help text",
-            choices_class.get_choice(choices_class.Option1).help_text
+            choices_class.get_choice(choices_class.Option1).help_text,
         )
 
         self.assertEqual(
             "Option2 help text",
-            choices_class.get_choice(choices_class.Option2).help_text
+            choices_class.get_choice(choices_class.Option2).help_text,
         )
 
         self.assertEqual(
             "RegexValidator",
-            choices_class.get_choice(choices_class.Option2).validator_class_name
+            choices_class.get_choice(choices_class.Option2).validator_class_name,
         )
 
     def test_get_extra_attributes_unknown_attribute_throws_error(self):
@@ -268,12 +269,12 @@ class DjangoChoices(unittest.TestCase):
         self.assertEqual(len(StringTestClass), 4)
 
     def test_order_annotation(self):
-        case = OrderedChoices.get_order_expression('dummy')
+        case = OrderedChoices.get_order_expression("dummy")
 
         expected = Case(
-            When(dummy='b', then=Value(0)),
-            When(dummy='a', then=Value(1)),
-            output_field=IntegerField()
+            When(dummy="b", then=Value(0)),
+            When(dummy="a", then=Value(1)),
+            output_field=IntegerField(),
         )
 
         self.assertEqual(repr(case), repr(expected))

@@ -2,7 +2,7 @@
 Django-Choices
 ==============
 
-|travis| |coverage| |docs| |pypi| |python-versions| |django-versions|
+|travis| |coverage| |docs| |black| |pypi| |python-versions| |django-versions|
 
 Order and sanity for django model choices.
 ------------------------------------------
@@ -110,6 +110,9 @@ The source code can be found on github_.
 .. |python-versions| image:: https://img.shields.io/pypi/pyversions/django-choices.svg
 
 .. |django-versions| image:: https://img.shields.io/pypi/djversions/django-choices.svg
+
+.. |black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
+    :target: https://github.com/psf/black
 
 .. _choices: https://docs.djangoproject.com/en/stable/ref/models/fields/#choices
 .. _MIT License: https://en.wikipedia.org/wiki/MIT_License
