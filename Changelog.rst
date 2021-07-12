@@ -2,6 +2,17 @@
 Changelog
 =========
 
+1.7.2 (2021-07-12)
+------------------
+
+CI maintenance release. There are no actual Python code changes in this release.
+
+* Added explicit support for Django 3.1 and 3.2
+* Added explicit support for Python 3.8 and 3.9
+* Migrated from Travis CI to Github Actions
+* Added Black as code formatter
+* Dropped Python 3.4 support since it's not available on Github Actions.
+
 1.7.1 (2019-12-08)
 ------------------
 
