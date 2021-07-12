@@ -2,6 +2,12 @@
 Changelog
 =========
 
+1.7.1 (2019-12-08)
+------------------
+
+* Added support for Django 3.0
+* Added dependency on non-vendored six
+
 1.7.0 (2019-05-02)
 ------------------
 
