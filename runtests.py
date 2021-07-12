@@ -8,7 +8,7 @@ from django.conf import settings
 def get_suite():
     disc_folder = path.abspath(path.dirname(__file__))
 
-    settings.configure(SECRET_KEY='dummy')
+    settings.configure(SECRET_KEY="dummy")
 
     stdout.write("Discovering tests in '%s'..." % disc_folder)
     suite = unittest.TestSuite()

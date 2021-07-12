@@ -14,8 +14,8 @@ __all__ = ["ChoiceItem", "DjangoChoices", "C"]
 
 # Support Functionality (Not part of public API)
 
-class Labels(dict):
 
+class Labels(dict):
     def __getattr__(self, name):
         result = dict.get(self, name, None)
         if result is not None:
@@ -28,7 +28,6 @@ class Labels(dict):
 
 
 class StaticProp(object):
-
     def __init__(self, value):
         self.value = value
 
@@ -37,7 +36,6 @@ class StaticProp(object):
 
 
 class Attributes(object):
-
     def __init__(self, attrs, fields):
         self.attrs = attrs
         self.fields = fields
@@ -45,8 +43,8 @@ class Attributes(object):
     def __get__(self, obj, objtype):
         if len(self.attrs) != len(self.fields):
             raise ValueError(
-                'Not all values are unique, it\'s not possible to map all '
-                'values to the right attribute'
+                "Not all values are unique, it's not possible to map all "
+                "values to the right attribute"
             )
         return self.attrs
 
@@ -65,6 +63,7 @@ class ChoiceItem(object):
     Set a label if you need characters that are illegal in a python identifier
     name (ie: "DVD/Movie").
     """
+
     order = 0
 
     def __init__(self, value=sentinel, label=None, order=None, **extra):
@@ -79,24 +78,28 @@ class ChoiceItem(object):
             self.order = ChoiceItem.order
 
     def __repr__(self):
-        extras = " ".join([
-            "{key}={value!r}".format(key=key, value=value)
-            for key, value in self._extra.items()
-        ])
+        extras = " ".join(
+            [
+                "{key}={value!r}".format(key=key, value=value)
+                for key, value in self._extra.items()
+            ]
+        )
 
         return "<{} value={!r} label={!r} order={!r}{extras}>".format(
             self.__class__.__name__,
             self.value,
             self.label,
             self.order,
-            extras=" " + extras if extras else ""
+            extras=" " + extras if extras else "",
         )
 
     def __getattr__(self, name):
         try:
             return self._extra[name]
         except KeyError:
-            raise AttributeError("{!r} object has no attribute {!r}".format(self.__class__, name))
+            raise AttributeError(
+                "{!r} object has no attribute {!r}".format(self.__class__, name)
+            )
 
 
 # Shorter convenience alias.
@@ -107,6 +110,7 @@ class DjangoChoicesMeta(type):
     """
     Metaclass that writes the choices class.
     """
+
     name_clean = re.compile(r"_+")
 
     def __iter__(self):
@@ -167,14 +171,15 @@ class DjangoChoicesMeta(type):
 
 @deconstructible
 class ChoicesValidator(object):
-
     def __init__(self, values):
         self.values = values
 
     def __call__(self, value):
         if value not in self.values:
-            raise ValidationError('Select a valid choice. %s is not '
-                                  'one of the available choices.' % value)
+            raise ValidationError(
+                "Select a valid choice. %s is not "
+                "one of the available choices." % value
+            )
 
     def __eq__(self, other):
         return isinstance(other, ChoicesValidator) and self.values == other.values
@@ -219,8 +224,9 @@ class DjangoChoices(six.with_metaclass(DjangoChoicesMeta)):
         """
         whens = []
         for choice_item in cls._fields.values():
-            whens.append(When(**{
-                field_name: choice_item.value,
-                "then": Value(choice_item.order)
-            }))
+            whens.append(
+                When(
+                    **{field_name: choice_item.value, "then": Value(choice_item.order)}
+                )
+            )
         return Case(*whens, output_field=IntegerField())

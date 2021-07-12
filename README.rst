@@ -2,7 +2,7 @@
 Django-Choices
 ==============
 
-|travis| |coverage| |docs| |pypi| |python-versions| |django-versions|
+|build-status| |code-quality| |coverage| |docs| |black| |pypi| |python-versions| |django-versions|
 
 Order and sanity for django model choices.
 ------------------------------------------
@@ -94,8 +94,13 @@ Source Code
 
 The source code can be found on github_.
 
-.. |travis| image:: https://secure.travis-ci.org/bigjason/django-choices.svg?branch=master
-    :target: http://travis-ci.org/bigjason/django-choices
+.. |build-status| image:: https://github.com/bigjason/django-choices/actions/workflows/ci.yml/badge.svg
+    :alt: Build status
+    :target: https://github.com/bigjason/django-choices/actions/workflows/ci.yml
+
+.. |code-quality| image:: https://github.com/bigjason/django-choices/actions//workflows/code_quality.yml/badge.svg
+    :alt: Code quality checks
+    :target: https://github.com/bigjason/django-choices/actions//workflows/code_quality.yml
 
 .. |coverage| image:: https://coveralls.io/repos/bigjason/django-choices/badge.svg?branch=master&service=github
     :target: https://coveralls.io/github/bigjason/django-choices?branch=master
@@ -110,6 +115,9 @@ The source code can be found on github_.
 .. |python-versions| image:: https://img.shields.io/pypi/pyversions/django-choices.svg
 
 .. |django-versions| image:: https://img.shields.io/pypi/djversions/django-choices.svg
+
+.. |black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
+    :target: https://github.com/psf/black
 
 .. _choices: https://docs.djangoproject.com/en/stable/ref/models/fields/#choices
 .. _MIT License: https://en.wikipedia.org/wiki/MIT_License
