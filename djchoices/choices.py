@@ -7,8 +7,6 @@ from django.core.exceptions import ValidationError
 from django.db.models import Case, IntegerField, Value, When
 from django.utils.deconstruct import deconstructible
 
-import six
-
 __all__ = ["ChoiceItem", "DjangoChoices", "C"]
 
 
@@ -188,7 +186,7 @@ class ChoicesValidator(object):
         return not (self == other)
 
 
-class DjangoChoices(six.with_metaclass(DjangoChoicesMeta)):
+class DjangoChoices(metaclass=DjangoChoicesMeta):
     order = 0
     choices = ()
     labels = Labels()
