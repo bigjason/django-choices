@@ -17,28 +17,31 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   migrating
    choices
    contributing
 
 Overview
 --------
 
-Django choices provides a declarative way of using the
-choices_ option on django_ fields.
+.. warning::
+
+    We **strongly** recommend migrating to the native functionality and not use
+    django-choices for new projects. See the :ref:`migration`. This library will not be
+    actively developed any longer.
+
+Django choices provides a declarative way of using the choices_ option on django_ fields.
 
 **Note:** Django 3.0 added `enumeration types <https://docs.djangoproject.com/en/3.0/releases/3.0/#enumerations-for-model-field-choices>`__.
 This feature mostly replaces the need for Django-Choices.
 See also `Adam Johnson's post on using them <https://adamj.eu/tech/2020/01/27/moving-to-django-3-field-choices-enumeration-types/>`__.
 
+
 Requirements
 ------------
 
 Django choices is fairly simple, so most Python and Django
-versions should work. It is tested against Python 2.7, 3.4, 3.5, 3.6, and 3.7.
-Django 1.11 until and including 3.0 are supported (and tested in Travis).
-
-If you need to support older Python or Django versions, you should stick with
-version ``1.4.4``. Backwards compatibility is dropped from 1.5 onwards.
+versions should work. It is tested against Python 3.8+ and Django 3.2+.
 
 
 Quick-start
