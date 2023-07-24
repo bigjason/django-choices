@@ -46,9 +46,9 @@ source_suffix = ".rst"
 master_doc = "index"
 
 # General information about the project.
-project = u"Django-Choices"
-copyright = u"2015, Jason Webb, Sergei Maertens"
-author = u"Jason Webb, Sergei Maertens"
+project = "Django-Choices"
+copyright = "2015, Jason Webb, Sergei Maertens"
+author = "Jason Webb, Sergei Maertens"
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -64,7 +64,7 @@ release = "1.6.0"
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = "en"
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:
@@ -223,8 +223,8 @@ latex_documents = [
     (
         master_doc,
         "Django-Choices.tex",
-        u"Django-Choices Documentation",
-        u"Jason Webb, Sergei Maertens",
+        "Django-Choices Documentation",
+        "Jason Webb, Sergei Maertens",
         "manual",
     ),
 ]
@@ -255,7 +255,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, "django-choices", u"Django-Choices Documentation", [author], 1)
+    (master_doc, "django-choices", "Django-Choices Documentation", [author], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -271,7 +271,7 @@ texinfo_documents = [
     (
         master_doc,
         "Django-Choices",
-        u"Django-Choices Documentation",
+        "Django-Choices Documentation",
         author,
         "Django-Choices",
         "One line description of project.",
