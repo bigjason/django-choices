@@ -13,3 +13,4 @@ Many thanks to the various contributors:
 * https://github.com/ashwch
 * [Alexander Kavanaugh](https://github.com/kavdev)
 * https://github.com/awais786
+* [Irtaza Akram](https://github.com/irtazaakram)
