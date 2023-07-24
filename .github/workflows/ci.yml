@@ -18,10 +18,15 @@ jobs:
         python:
           - '3.8'
           - '3.9'
+          - '3.10'
+          - '3.11'
         django:
           - '3.2'
           - '4.1'
           - '4.2'
+        exclude:
+          - python: '3.11'
+            django: '3.2'
 
     name: Run the test suite (Python ${{ matrix.python }}, Django ${{ matrix.django }})
 
@@ -32,15 +37,16 @@ jobs:
           python-version: ${{ matrix.python }}
 
       - name: Install dependencies
-        run: pip install tox tox-gh-actions codecov
+        run: pip install tox tox-gh-actions
 
       - name: Run tests
-        run: |
-          tox
-          codecov -e TOXENV,DJANGO
+        run: tox
         env:
           PYTHON_VERSION: ${{ matrix.python }}
           DJANGO: ${{ matrix.django }}
+
+      - name: Publish coverage report
+        uses: codecov/codecov-action@v3
 
   # publish:
   #   name: Publish package to PyPI
