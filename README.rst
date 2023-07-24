@@ -7,80 +7,21 @@ Django-Choices
 Order and sanity for django model choices.
 ------------------------------------------
 
-Django choices provides a declarative way of using the choices_ option on django_
-fields. Read the full `documentation`_ on ReadTheDocs.
+**DISCLAIMER**
+
+New projects should not use this package. Existing users can follow the migration guide
+in the `documentation`_.
 
 **Note:** Django 3.0 added `enumeration types <https://docs.djangoproject.com/en/3.0/releases/3.0/#enumerations-for-model-field-choices>`__.
 This feature mostly replaces the need for Django-Choices.
 See also `Adam Johnson's post on using them <https://adamj.eu/tech/2020/01/27/moving-to-django-3-field-choices-enumeration-types/>`__.
 
-------------
-Installation
-------------
+**Introduction**
 
-You can install via PyPi_ or direct from the github_ repo.
+Django choices provides a declarative way of using the choices_ option on django_
+fields.
 
-.. code-block:: bash
-
-    $ pip install django-choices
-
------------
-Basic Usage
------------
-
-To start you create a choices class. Then you point the choices property on your
-fields to the ``choices`` attribute of the new class. Django will be able to use
-the choices and you will be able to access the values by name.  For example you
-can replace this:
-
-.. code-block:: python
-
-    # In models.py
-    class Person(models.Model):
-    	# Choices
-    	PERSON_TYPE = (
-            ("C", "Customer"),
-            ("E", "Employee"),
-            ("G", "Groundhog"),
-        )
-        # Fields
-        name = models.CharField(max_length=32)
-        type = models.CharField(max_length=1, choices=PERSON_TYPE)
-
-With this:
-
-.. code-block:: python
-
-    # In models.py
-    from djchoices import DjangoChoices, ChoiceItem
-
-    class Person(models.Model):
-    	# Choices
-        class PersonType(DjangoChoices):
-            customer = ChoiceItem("C")
-            employee = ChoiceItem("E")
-            groundhog = ChoiceItem("G")
-
-        # Fields
-        name = models.CharField(max_length=32)
-        type = models.CharField(max_length=1, choices=PersonType.choices)
-
-You can use this elsewhere like this:
-
-.. code-block:: python
-
-    # Other code
-    Person.create(name="Phil", type=Person.PersonType.groundhog)
-
-You can use them without value, and the label will be used as value:
-
-.. code-block:: python
-
-    class Sample(DjangoChoices):
-        option_a = ChoiceItem()
-        option_b = ChoiceItem()
-
-    print(Sample.option_a)  # "option_a"
+See the `documentation`_ on ReadTheDocs on how to use this library.
 
 -------
 License
