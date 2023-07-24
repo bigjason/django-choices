@@ -2,12 +2,35 @@
 Changelog
 =========
 
-Unreleased
-----------
+2.0.0 (2023-07-24)
+------------------
 
-* Add support for Django 4.1 & 4.2
+This will (likely) be the final release, ever. Django has been shipping native choices
+support since version 3.0, so we are sunsetting this library. Many thanks to every
+contributor in any matter - documentation, issues, ideas, patches... You have all
+made valuable contribution.
+
+That said, this final (hopefully) release aims to assist in taking those last hurdles.
+We've provide some tooling to help you migrate (see the "migrating" documentation) and
+updated the project to work on supported Django and Python versions.
+
+Breaking changes
+----------------
+
 * Drop support for Django 1.11, 2.2, 3.0, 3.1 (EOL)
 * Drop support for Python 2.7, 3.5, 3.6, 3.7 (EOL)
+
+Older Django versions and Python 3.6+ likely still work, but they are not tested in CI
+anymore.
+
+Other changes
+-------------
+
+* Confirm support for Django 4.1 & 4.2
+* Confirm support for Python 3.10 and 3.11
+* Added a management command to generate equivalent native django choice definitions
+* Documented how to migrate to native choices
+* Documented the (approximately) equivalent usage of Django Choices/native choices.
 
 1.7.2 (2021-07-12)
 ------------------
