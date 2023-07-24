@@ -11,8 +11,7 @@ setup(
     license="MIT",
     description="Sanity for the django choices functionality.",
     long_description=readme,
-    install_requires=["Django>=3.2", "six>=1.13.0"],
-    test_suite="runtests.get_suite",
+    install_requires=["Django>=3.2"],
     url="https://github.com/bigjason/django-choices",
     author="Jason Webb",
     author_email="bigjasonwebb@gmail.com,sergeimaertens@gmail.com",
@@ -29,6 +28,8 @@ setup(
         "Framework :: Django :: 4.2",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: Implementation :: PyPy",
     ],
 )
